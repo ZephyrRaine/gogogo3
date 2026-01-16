@@ -22,6 +22,7 @@ Exports/
 .vscode/
 .idea/
 .DS_Store
+.zed/
 
 # Plugin specific
 addons/script-ide/*

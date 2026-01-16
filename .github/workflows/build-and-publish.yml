@@ -42,7 +42,7 @@ env:
   EXPORT_NAME: ${{ vars.EXPORT_NAME }}
   # NOTE: If your `project.godot` is at the repository root, set `PROJECT_PATH` to "."
   # If it's in a subdirectory, set it to the subdirectory name (e.g., "your-game")
-  PROJECT_PATH: .
+  PROJECT_PATH: ./game
 
 jobs:
   export-web:
