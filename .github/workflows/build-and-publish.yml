@@ -27,10 +27,7 @@
 
 name: "Build and Deploy to Itch.io"
 
-on:
-  release:
-    types: [published]
-  workflow_dispatch:
+on: push
 
 permissions:
   # Allow release asset uploads
