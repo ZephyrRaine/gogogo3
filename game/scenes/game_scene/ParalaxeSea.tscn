@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://oqgusgqroyfb"]
+
+[ext_resource type="Texture2D" uid="uid://barxhujj8wfjl" path="res://assets/PNG/sky.png" id="1_laysn"]
+[ext_resource type="Texture2D" uid="uid://c2u08uowejnvg" path="res://assets/PNG/sea.png" id="2_rrn88"]
+[ext_resource type="Texture2D" uid="uid://5hemdvfvw6mr" path="res://assets/PNG/background.png" id="3_g4fcb"]
+
+[node name="Sea" type="Node2D"]
+
+[node name="Sky" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(717.545, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 3
+
+[node name="BG" type="Sprite2D" parent="Sky"]
+position = Vector2(0, -175.105)
+scale = Vector2(1.153481, 0.941)
+texture = ExtResource("1_laysn")
+centered = false
+
+[node name="Sea" type="Parallax2D" parent="."]
+repeat_size = Vector2(500, 0)
+autoscroll = Vector2(1, 0)
+repeat_times = 5
+
+[node name="BG" type="Sprite2D" parent="Sea"]
+position = Vector2(0, 18.175)
+scale = Vector2(1.159, 0.8898485)
+texture = ExtResource("2_rrn88")
+centered = false
+
+[node name="Start" type="Parallax2D" parent="."]
+autoscroll = Vector2(1, 0)
+
+[node name="Background" type="Sprite2D" parent="Start"]
+position = Vector2(0, -172.81)
+scale = Vector2(0.47331452, 0.47331458)
+texture = ExtResource("3_g4fcb")
+centered = false
