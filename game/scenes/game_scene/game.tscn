@@ -8,12 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
 [ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
+[ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wedpv"]
-size = Vector2(8, 8)
 
 [node name="Game" type="Node2D"]
 
@@ -57,10 +55,8 @@ pebble = NodePath("../Pebble")
 position = Vector2(346, 93)
 texture = SubResource("PlaceholderTexture2D_7ulqd")
 
-[node name="Pebble" type="Sprite2D" parent="."]
-visible = false
+[node name="Pebble" type="Node2D" parent="."]
 position = Vector2(-155, 55)
-texture = SubResource("PlaceholderTexture2D_wedpv")
 script = ExtResource("7_wedpv")
 initial_position = Vector2(-155, 55)
 initial_speed = 20.0
@@ -70,3 +66,7 @@ friction_x = 0.99
 [node name="Camera2D" type="Camera2D" parent="Pebble"]
 position = Vector2(124, -55)
 zoom = Vector2(1.5, 1.5)
+
+[node name="PebbleAnim" parent="Pebble" instance=ExtResource("9_oxnsv")]
+autoplay = "default"
+frame_progress = 0.24286151
