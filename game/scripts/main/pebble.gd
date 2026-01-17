@@ -1,121 +1,134 @@
 extends Node2D
 class_name Pebble
 
-@export var bounces_per_force_point = 16 #nombre de rebonds par point de force du lancer (équilibrable)
-@export var bounce_length_per_force_point = 100 #taille d'un rebond par point de force du lancer (équilibrable)
-
-@export var speed_per_force_point = 1.0 #nvitesse (esthétique) par point de force du lancer
 
 @export var initial_position: Vector2
-@export var initial_speed = 1.0
-
 @export var water_height = 93.0
-@export var min_bounce_velocity = 10
 
-@onready var og_initial_speed = initial_speed
-@onready var og_gravity = gravity
-@onready var og_bounce_ratio = bounce_ratio
-@onready var og_friction_y = friction_y
-@onready var og_friction_x = friction_x
+@export var pebble_shadow : Sprite2D
+
+@export_group("Bounces")
+@export var bounces_per_launch_force_point = 16 #nombre de rebonds par point de launch_force du lancer (équilibrable)
+@export var bounce_length_per_launch_force_point = 800 #taille d'un rebond de lancer par point de launch_force du lancer (équilibrable)
+@export var min_bounce_velocity = 0.5
+@export var min_bounce_angle = -0.4
+
+@export_group("velocity")
+@export var velocity_per_launch_force_point = 1.0 #nvitesse (esthétique) par point de launch_force du lancer
+@export var lost_velocity_ratio_on_bounce = 0.9
+@export var lost_angle_ratio_on_bounce = 0.9
+@export var lost_length_ratio_on_bounce = 0.8
+
 @onready var og_water_height = water_height
 @onready var og_min_bounce_velocity = min_bounce_velocity
 
-var direction: Vector2
-var speed: float
-var velocity: Vector2
+var height_that_ends = 75.0
+var trajectory_that_ends = 0.4
 
+var velocity
 var distance
+var bounce_angle
 var bounce_index
-var total_bounces
+var bounce_length
+var total_bounces : int
 var max_bounce_length
+
+var score_bounces
+var score_distance
 
 var p0 : Vector2
 var p1 : Vector2
 var p2 : Vector2 
 var t = 0.0
 
+var current_bounce_velocity
+
 
 func _ready() -> void:
 	visible = false
+	pebble_shadow.visible = false
+	pebble_shadow.position.y = water_height
 	EventBus.scoring_done.connect(func(): position = initial_position)
 
-func launch_pebble(_direction: Vector2, force: float):
+func launch_pebble(launch_direction: Vector2, launch_force: float):
+	
+	print("launch ", launch_force)
 	visible = true
+	pebble_shadow.visible = true
 	position = initial_position
-	direction = _direction
-	speed = initial_speed * force
-	velocity = direction * speed
 
 	# RESET STATS TO DEFAULTS FIRST (Important so buffs don't stack infinitely every retry)
-	gravity = og_gravity
-	bounce_ratio = og_bounce_ratio
-	initial_speed = og_initial_speed # Or whatever your default is
+	score_bounces = 0
+	score_distance = 0.0
 
 	# APPLY PASSIVE & LAUNCH EFFECTS
 	ObjectManager.apply_trigger("passive", self)
 	ObjectManager.apply_trigger("on_launch", self)
 
-	direction = _direction
-	speed = initial_speed * force # Now uses the modified initial_speed
-	velocity = direction * speed
-
-	speed = speed_per_force_point
 	
-	total_bounces = force * bounces_per_force_point
-	print("total bounces: %s", total_bounces)
-	max_bounce_length = force * bounce_length_per_force_point
+	velocity = launch_force * velocity_per_launch_force_point
+	total_bounces = int(launch_force * bounces_per_launch_force_point)
+	print("total bounces: ", total_bounces)
+	max_bounce_length = launch_force * bounce_length_per_launch_force_point
 	
 	distance = 0
 	bounce_index = 0
-	
+	bounce_angle = launch_direction.angle()
+	bounce_length = max_bounce_length
 	start_bounce()
 
 func start_bounce():
 	p0 = position
-	p2.x = p0.x + max_bounce_length
+	p2.x = p0.x + bounce_length
 	p2.y = water_height
 	
 	p1.x = (p0.x + p2.x) * 0.5
-	p1.y = water_height + (p2.x - p0.x) * tan(direction.angle())
+	p1.y = water_height + (p2.x - p0.x) * tan(bounce_angle)
 	t = 0.0
+	print("height ", p1.y)
+	print("ratio ", -((p2.x - p0.x) * tan(bounce_angle)) / (p2.x - p0.x))
+	
+	if (bounce_index > 0
+	&& (p1.y > height_that_ends || -((p2.x - p0.x) * tan(bounce_angle)) / (p2.x - p0.x) > trajectory_that_ends)):
+		launch_over()
+	else:
+		distance += p2.x - p0.x
+		score_distance += p2.x - p0.x # possible modifier here
 
 func end_bounce():
-	if (bounce_index < total_bounces):
-		bounce_index = bounce_index + 1
-		start_bounce()
-	else:
-		launch_over()
+	# HANDLE BOUNCE COUNT LOGIC
+	var bounce_ctx = {"bounce_count_amount": 1} # Default is 1
+	ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
+	score_bounces += bounce_ctx["bounce_count_amount"]
+	bounce_index = bounce_index + 1
+	
+	# HANDLE BOUNCE PHYSICS 
+	# var physics_ctx = {"velocity_y": velocity}
+	# ObjectManager.apply_trigger("on_bounce_physics", physics_ctx)
+	# velocity = physics_ctx["velocity_y"]
+	velocity *= lost_velocity_ratio_on_bounce
+	bounce_angle *= lost_angle_ratio_on_bounce
+	bounce_length *= lost_length_ratio_on_bounce
+	#print("angle: ", bounce_angle)
+	if(bounce_angle > -0.1): bounce_angle = -0.1
+	start_bounce()
 
 func launch_over():
 	visible = false
-	EventBus.launch_done.emit(distance, total_bounces)
+	pebble_shadow.visible = false
+	EventBus.launch_done.emit(score_distance, score_bounces)
 	
 
 func _process(delta: float) -> void:
 	if !visible:
 		return
-
-	velocity.y += gravity * delta
-	#velocity.y *= friction_y
-	#velocity.x *= friction_x
-	position += velocity * delta
-	distance = position.x - initial_position.x
-	if position.y > water_height:
-		if velocity.y > min_bounce_velocity:
-			# HANDLE BOUNCE COUNT LOGIC
-			var bounce_ctx = {"bounce_count_amount": 1} # Default is 1
-			ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
-			bounces += bounce_ctx["bounce_count_amount"]
-
-			velocity.y *= -bounce_ratio
-
-			# HANDLE BOUNCE PHYSICS (e.g. Chaos Spring)
-			# We modify velocity.y directly here.
-			# Since we just flipped it to negative (upward), multiplying by 2 makes it go higher.
-			var physics_ctx = {"velocity_y": velocity.y}
-			ObjectManager.apply_trigger("on_bounce_physics", physics_ctx)
-			velocity.y = physics_ctx["velocity_y"]
-			position.y = water_height - 0.1
-		else:
-			visible = false
-			EventBus.launch_done.emit(distance, bounces)
+	
+	var q0 = p0.lerp(p1, t)
+	var q1 = p1.lerp(p2, t)
+	position = q0.lerp(q1, t)
+	pebble_shadow.position.x = position.x
+	t+=delta*velocity*(max_bounce_length/bounce_length)
+		
+	if (t >= 1.0 || position.y > water_height): 
+		position.y = water_height
+		end_bounce()
