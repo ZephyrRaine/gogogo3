@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duhqhbgxmug7m"]
+[gd_scene load_steps=15 format=3 uid="uid://duhqhbgxmug7m"]
 
 [ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
 [ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
@@ -15,6 +15,10 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
+
+[sub_resource type="Curve" id="Curve_1qftq"]
+_data = [Vector2(0, 0), 0.0, 0.9, 0, 0, Vector2(0.2, 0.2), 1.0, 1.2, 0, 0, Vector2(1, 1), 1.2, 0.0, 0, 0]
+point_count = 3
 
 [node name="Game" type="Node2D"]
 
@@ -73,6 +77,7 @@ position = Vector2(-155, 55)
 script = ExtResource("7_wedpv")
 initial_position = Vector2(-155, 55)
 pebble_shadow = NodePath("../PebbleShadow")
+juicy_velocity_curve = SubResource("Curve_1qftq")
 
 [node name="Camera2D" type="Camera2D" parent="Pebble"]
 position = Vector2(124, -145)
