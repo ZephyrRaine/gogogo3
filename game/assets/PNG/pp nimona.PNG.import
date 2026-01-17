@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2u08uowejnvg"
-path="res://.godot/imported/sea.png-55be039a36cf7996fd4d640c6f95e0f4.ctex"
+uid="uid://d2g18p0oa0lxp"
+path="res://.godot/imported/pp nimona.PNG-26e81efc38ac0ccbb264684ea2c824ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sea.png"
-dest_files=["res://.godot/imported/sea.png-55be039a36cf7996fd4d640c6f95e0f4.ctex"]
+source_file="res://assets/PNG/pp nimona.PNG"
+dest_files=["res://.godot/imported/pp nimona.PNG-26e81efc38ac0ccbb264684ea2c824ea.ctex"]
 
 [params]
 

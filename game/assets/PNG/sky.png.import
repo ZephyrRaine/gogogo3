@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2g18p0oa0lxp"
-path="res://.godot/imported/pp nimona.PNG-b242d8aeb1eaa481526a7c7251093fd1.ctex"
+uid="uid://barxhujj8wfjl"
+path="res://.godot/imported/sky.png-1783c93dec2b4dc7a7078340d9844146.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pp nimona.PNG"
-dest_files=["res://.godot/imported/pp nimona.PNG-b242d8aeb1eaa481526a7c7251093fd1.ctex"]
+source_file="res://assets/PNG/sky.png"
+dest_files=["res://.godot/imported/sky.png-1783c93dec2b4dc7a7078340d9844146.ctex"]
 
 [params]
 
