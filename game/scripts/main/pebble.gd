@@ -16,13 +16,13 @@ class_name Pebble
 @export_group("velocity")
 @export var velocity_per_launch_force_point = 1.0 #nvitesse (esthétique) par point de launch_force du lancer
 @export var lost_velocity_ratio_on_bounce = 0.9
-@export var lost_angle_ratio_on_bounce = 0.9
+@export var lost_angle_ratio_on_bounce = 0.98
 @export var lost_length_ratio_on_bounce = 0.8
 
 @onready var og_water_height = water_height
 @onready var og_min_bounce_velocity = min_bounce_velocity
 
-var height_that_ends = 75.0
+var height_that_ends = 65.0
 var trajectory_that_ends = 0.4
 
 var velocity

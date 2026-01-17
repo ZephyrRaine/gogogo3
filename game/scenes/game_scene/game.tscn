@@ -21,7 +21,6 @@ size = Vector2(1000, 4)
 [node name="Sea" parent="." instance=ExtResource("1_fhy3a")]
 
 [node name="LaunchManager" type="Node2D" parent="." node_paths=PackedStringArray("aim_indicator", "force_indicator")]
-visible = false
 script = ExtResource("1_700et")
 current_launching_phase = 1
 aim_indicator = NodePath("AimIndicator")
@@ -48,7 +47,8 @@ texture = ExtResource("2_6y8rp")
 position = Vector2(-32, 0)
 
 [node name="TargetNeedle" type="Sprite2D" parent="LaunchManager/AimIndicator/TargetPivot"]
-position = Vector2(32, 0)
+position = Vector2(32, -3)
+rotation = -0.12217305
 texture = ExtResource("5_o347i")
 
 [node name="ForceIndicator" type="Node2D" parent="LaunchManager"]
