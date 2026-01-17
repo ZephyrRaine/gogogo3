@@ -1,35 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://clxs5gwisal5m"]
+[gd_scene load_steps=8 format=3 uid="uid://clxs5gwisal5m"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_3re04"]
 [ext_resource type="PackedScene" uid="uid://duhqhbgxmug7m" path="res://scenes/game_scene/game.tscn" id="5_y85d6"]
-[ext_resource type="Script" path="res://scenes/game_scene/score_manager.gd" id="6_y85d6"]
-[ext_resource type="Texture2D" uid="uid://d0hljdfwhveh6" path="res://assets/Bg_boucle/cliff_boucle_1.png" id="7_uxa2e"]
-[ext_resource type="Texture2D" uid="uid://dubl457kd6vrg" path="res://assets/Bg_boucle/cliff_boucle_2.png" id="8_is1bs"]
-[ext_resource type="Texture2D" uid="uid://bekh4bxe2drqe" path="res://assets/Bg_boucle/Bg_sky.png" id="9_tdibn"]
-[ext_resource type="Texture2D" uid="uid://csc0e6vrau3ng" path="res://assets/Bg_boucle/cloud_boucle_6.png" id="10_pbvv0"]
-[ext_resource type="Texture2D" uid="uid://cxtrahd6wk7v3" path="res://assets/Bg_boucle/cloud_boucle_5.png" id="11_lsqul"]
+[ext_resource type="Script" uid="uid://d2rnpm0aebv15" path="res://scenes/game_scene/score_manager.gd" id="6_y85d6"]
 [ext_resource type="Script" uid="uid://bnhmjy582mlax" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="11_ulq3g"]
-[ext_resource type="Texture2D" uid="uid://4vn5lskora7c" path="res://assets/Bg_boucle/cloud_boucle_4.png" id="12_lduvt"]
-[ext_resource type="Texture2D" uid="uid://34jocxq3vjka" path="res://assets/Bg_boucle/cloud_boucle_3.png" id="13_o76mb"]
-[ext_resource type="Texture2D" uid="uid://c4w1bl4v171dh" path="res://assets/Bg_boucle/cloud_boucle_2.png" id="14_15pg1"]
-[ext_resource type="Texture2D" uid="uid://cg5jj18idlrot" path="res://assets/Bg_boucle/cloud_boucle_1.png" id="15_llhxb"]
-[ext_resource type="Texture2D" uid="uid://bcttwpj3jkx2o" path="res://assets/Bg_boucle/fMaskar_cliffs.png" id="16_p6vqo"]
-[ext_resource type="Texture2D" uid="uid://y65ykriu888h" path="res://assets/Bg_boucle/Mask_water_far.png" id="17_r76xh"]
-[ext_resource type="Texture2D" uid="uid://cf7400b6o6g8j" path="res://assets/Bg_boucle/Mask_water_ricochet.png" id="18_ntdyb"]
-[ext_resource type="Texture2D" uid="uid://uotpwe47kmt1" path="res://assets/Bg_boucle/speed_trame_1.png" id="19_rh2k3"]
-[ext_resource type="Texture2D" uid="uid://dsd8wde48tek0" path="res://assets/Bg_boucle/speed_trame_2.png" id="20_jr5d5"]
-[ext_resource type="Texture2D" uid="uid://bmwvhwyu26beh" path="res://assets/Bg_boucle/speed_trame_3.png" id="21_gpkwl"]
-[ext_resource type="Texture2D" uid="uid://c7yivjq0ulohp" path="res://assets/Bg_boucle/speed_trame_4.png" id="22_gq71w"]
-[ext_resource type="Texture2D" uid="uid://b838dt5f2q15c" path="res://assets/Bg_boucle/speed_trame_5.png" id="23_7wyjv"]
-[ext_resource type="Texture2D" uid="uid://b23c40576p86n" path="res://assets/Bg_boucle/water_reflect_1.png" id="24_rqent"]
-[ext_resource type="Texture2D" uid="uid://dlleu1xcjxnv6" path="res://assets/Bg_boucle/water_reflect_2.png" id="25_uplwd"]
-[ext_resource type="Texture2D" uid="uid://cbad1xomh61u0" path="res://assets/Bg_boucle/water_reflect_3.png" id="26_jckqn"]
-[ext_resource type="Texture2D" uid="uid://qoadxv81da6b" path="res://assets/Bg_boucle/water_reflect_big_1.png" id="27_48t47"]
-[ext_resource type="Texture2D" uid="uid://dv5fp5mvj8dnv" path="res://assets/Bg_boucle/water_reflect_big_2.png" id="28_tdoof"]
-[ext_resource type="Texture2D" uid="uid://bm06jhqdj2pgw" path="res://assets/Bg_boucle/water_reflect_big_3.png" id="29_osgb6"]
-[ext_resource type="Texture2D" uid="uid://dbts6f6ir8wle" path="res://assets/Bg_boucle/water_reflect_big_4.png" id="30_p6niw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v20na"]
 font_size = 54
@@ -84,113 +60,3 @@ grow_horizontal = 2
 text = "DISTANCE * BOUNCES = TOTAL"
 label_settings = SubResource("LabelSettings_v20na")
 horizontal_alignment = 1
-
-[node name="CliffBoucle1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("7_uxa2e")
-
-[node name="CliffBoucle2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("8_is1bs")
-
-[node name="BgSky" type="Sprite2D" parent="."]
-position = Vector2(2794, 304)
-texture = ExtResource("9_tdibn")
-
-[node name="CloudBoucle6" type="Sprite2D" parent="."]
-position = Vector2(3059, 146)
-texture = ExtResource("10_pbvv0")
-
-[node name="CloudBoucle5" type="Sprite2D" parent="."]
-position = Vector2(2149, 244)
-texture = ExtResource("11_lsqul")
-
-[node name="CloudBoucle4" type="Sprite2D" parent="."]
-position = Vector2(2706, 324)
-texture = ExtResource("12_lduvt")
-
-[node name="CloudBoucle3" type="Sprite2D" parent="."]
-position = Vector2(2448, 242)
-texture = ExtResource("13_o76mb")
-
-[node name="CloudBoucle2" type="Sprite2D" parent="."]
-position = Vector2(3887, 307)
-texture = ExtResource("14_15pg1")
-
-[node name="CloudBoucle1" type="Sprite2D" parent="."]
-position = Vector2(1638, 289)
-texture = ExtResource("15_llhxb")
-
-[node name="FMaskarCliffs" type="Sprite2D" parent="."]
-position = Vector2(2771, 388)
-texture = ExtResource("16_p6vqo")
-
-[node name="MaskWaterFar" type="Sprite2D" parent="."]
-position = Vector2(2794, 452)
-texture = ExtResource("17_r76xh")
-
-[node name="MaskWaterRicochet" type="Sprite2D" parent="."]
-position = Vector2(2794, 663)
-texture = ExtResource("18_ntdyb")
-
-[node name="SpeedTrame1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("19_rh2k3")
-
-[node name="SpeedTrame2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("20_jr5d5")
-
-[node name="SpeedTrame3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("21_gpkwl")
-
-[node name="SpeedTrame4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("22_gq71w")
-
-[node name="SpeedTrame5" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("23_7wyjv")
-
-[node name="WaterReflect1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("24_rqent")
-
-[node name="WaterReflect2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("25_uplwd")
-
-[node name="WaterReflect3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("26_jckqn")
-
-[node name="WaterReflectBig1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("27_48t47")
-
-[node name="WaterReflectBig2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("28_tdoof")
-
-[node name="WaterReflectBig3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("29_osgb6")
-
-[node name="WaterReflectBig4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("30_p6niw")

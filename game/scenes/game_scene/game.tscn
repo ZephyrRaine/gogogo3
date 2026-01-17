@@ -1,20 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://duhqhbgxmug7m"]
+[gd_scene load_steps=11 format=3 uid="uid://duhqhbgxmug7m"]
 
 [ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
 [ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
+[ext_resource type="PackedScene" uid="uid://bs48nvkckyw6j" path="res://scenes/game_scene/ParalaxeSea.tscn" id="1_fhy3a"]
 [ext_resource type="Texture2D" uid="uid://hb34sl2fdjfg" path="res://assets/aim_needle.png" id="2_6y8rp"]
 [ext_resource type="Script" uid="uid://c486e1smalas7" path="res://scripts/main/aim_indicator.gd" id="2_700et"]
 [ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
 [ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
-[ext_resource type="PackedScene" uid="uid://oqgusgqroyfb" path="res://scenes/game_scene/ParalaxeSea.tscn" id="8_fhy3a"]
-
-[sub_resource type="Gradient" id="Gradient_lhtia"]
-colors = PackedColorArray(0.9867516, 0.9867516, 0.9867516, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jpbhf"]
-gradient = SubResource("Gradient_lhtia")
-width = 32
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
@@ -24,12 +17,7 @@ size = Vector2(8, 8)
 
 [node name="Game" type="Node2D"]
 
-[node name="Sea" parent="." instance=ExtResource("8_fhy3a")]
-position = Vector2(-326.89, -1.535)
-
-[node name="Player" type="Sprite2D" parent="."]
-position = Vector2(-179, 60)
-texture = SubResource("GradientTexture2D_jpbhf")
+[node name="Sea" parent="." instance=ExtResource("1_fhy3a")]
 
 [node name="LaunchManager" type="Node2D" parent="." node_paths=PackedStringArray("aim_indicator")]
 visible = false
@@ -75,10 +63,10 @@ position = Vector2(-155, 55)
 texture = SubResource("PlaceholderTexture2D_wedpv")
 script = ExtResource("7_wedpv")
 initial_position = Vector2(-155, 55)
-initial_speed = 10.0
+initial_speed = 20.0
 gravity = 100.0
 friction_x = 0.99
 
 [node name="Camera2D" type="Camera2D" parent="Pebble"]
 position = Vector2(124, -55)
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
