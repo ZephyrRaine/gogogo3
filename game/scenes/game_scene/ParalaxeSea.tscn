@@ -23,8 +23,7 @@
 
 [node name="Sky" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.8, 0.8)
-repeat_size = Vector2(717.545, 0)
-autoscroll = Vector2(-10, 0)
+repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="BgSky" type="Sprite2D" parent="Sky"]
@@ -32,9 +31,9 @@ position = Vector2(1737, -135)
 texture = ExtResource("6_ah1jf")
 
 [node name="Sea" type="Parallax2D" parent="."]
-repeat_size = Vector2(500, 0)
+repeat_size = Vector2(550, 0)
 autoscroll = Vector2(1, 0)
-repeat_times = 5
+repeat_times = 6
 
 [node name="MaskWaterFar" type="Sprite2D" parent="Sea"]
 position = Vector2(2017, 12.5)
@@ -44,7 +43,9 @@ texture = ExtResource("14_soq7q")
 position = Vector2(2017, 223.5)
 texture = ExtResource("15_errmt")
 
-[node name="FMaskarCliffs" type="Sprite2D" parent="."]
+[node name="MaskarCliffs" type="Parallax2D" parent="."]
+
+[node name="FMaskarCliffs" type="Sprite2D" parent="MaskarCliffs"]
 position = Vector2(2815, -51.5)
 texture = ExtResource("13_qir2g")
 
