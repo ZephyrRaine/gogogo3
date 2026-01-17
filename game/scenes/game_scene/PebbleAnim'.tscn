@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://nbshwsd86jm8"]
+
+[ext_resource type="SpriteFrames" uid="uid://p1q21rxuenrs" path="res://assets/PNG/Animation/PaddleRotate.tres" id="1_8bewv"]
+
+[node name="PebbleAnim" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_8bewv")
+frame_progress = 0.27552584

@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://p1q21rxuenrs"]
+
+[ext_resource type="Texture2D" uid="uid://c4bqwi8t4j78q" path="res://assets/PNG/Animation/Rock-pixel-art_001.png" id="1_56pdg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8hhy"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6cly"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f436f"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn71h"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6hys"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a4w5"]
+atlas = ExtResource("1_56pdg")
+region = Rect2(240, 0, 48, 48)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8hhy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6cly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f436f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn71h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6hys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7a4w5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 45.0
+}]
