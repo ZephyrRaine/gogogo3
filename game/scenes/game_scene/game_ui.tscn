@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://clxs5gwisal5m"]
+[gd_scene load_steps=8 format=3 uid="uid://clxs5gwisal5m"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_3re04"]
 [ext_resource type="PackedScene" uid="uid://duhqhbgxmug7m" path="res://scenes/game_scene/game.tscn" id="5_y85d6"]
+[ext_resource type="Script" uid="uid://d2rnpm0aebv15" path="res://scenes/game_scene/score_manager.gd" id="6_y85d6"]
 [ext_resource type="Script" uid="uid://bnhmjy582mlax" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="11_ulq3g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v20na"]
+font_size = 54
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -40,3 +44,19 @@ script = ExtResource("11_ulq3g")
 
 [node name="Game" parent="ViewportContainer" instance=ExtResource("5_y85d6")]
 position = Vector2(746, 397)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ViewportContainer"]
+script = ExtResource("6_y85d6")
+
+[node name="ScoreLabel" type="Label" parent="ViewportContainer/CanvasLayer"]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -524.5
+offset_right = 524.5
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "DISTANCE * BOUNCES = TOTAL"
+label_settings = SubResource("LabelSettings_v20na")
+horizontal_alignment = 1

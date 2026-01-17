@@ -1,3 +1,5 @@
 extends Node
 
 signal new_launch(direction: Vector3, force: float)
+signal launch_done(distance: float, bounces: int)
+signal scoring_done()

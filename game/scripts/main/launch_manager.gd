@@ -32,11 +32,13 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if current_launching_phase == LaunchPhases.LAUNCH_AIM:
 		aim_ratio += delta * aim_ratio_speed * aim_ratio_direction
+		aim_ratio = clamp(aim_ratio, 0.0, 1.0)
 		if aim_ratio <= 0.0 || aim_ratio >= 1.0:
 			aim_ratio_direction *= -1
 		aim_indicator.set_needle_rotation(aim_ratio)
 
 
 func request_launch():
-	current_launching_phase = LaunchPhases.LAUNCH_AIM
 	visible = true
+	await get_tree().create_timer(.25).timeout
+	current_launching_phase = LaunchPhases.LAUNCH_AIM

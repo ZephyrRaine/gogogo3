@@ -1,16 +1,13 @@
 extends Node2D
 class_name Pebble
 
-
-func _ready() -> void:
-	visible = false
-
-
 @export var initial_position: Vector2
 @export var initial_speed = 1.0
 @export var gravity = 9.81
 @export var friction_y = 0.98
 @export var friction_x = 0.98
+@export var water_height = 93.0
+@export var min_bounce_velocity = 10
 
 var direction: Vector2
 var speed: float
@@ -19,8 +16,10 @@ var velocity: Vector2
 var distance
 var bounces
 
-#TODO: clean cette merde
-@onready var label = $Camera2D/CanvasLayer/Label
+
+func _ready() -> void:
+	visible = false
+	EventBus.scoring_done.connect(func(): position = initial_position)
 
 
 func launch_pebble(_direction: Vector2, force: float):
@@ -43,12 +42,11 @@ func _process(delta: float) -> void:
 	#velocity.x *= friction_x
 	position += velocity * delta
 	distance = position.x - initial_position.x
-	label.text = "%d x %d = %.3f" % [distance, bounces + 1, distance * bounces]
-	if position.y > 93.0:
-		print(velocity.y)
-		if velocity.y > 10:
+	if position.y > water_height:
+		if velocity.y > min_bounce_velocity:
 			bounces += 1
 			velocity.y *= -0.8
 			position.y = 92.9
 		else:
 			visible = false
+			EventBus.launch_done.emit(distance, bounces)
