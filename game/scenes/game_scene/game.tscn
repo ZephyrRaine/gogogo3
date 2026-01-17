@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://c486e1smalas7" path="res://scripts/main/aim_indicator.gd" id="2_700et"]
 [ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
 [ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
-[ext_resource type="Script" uid="uid://de3s64g4d4bxi" path="res://scripts/main/force_indicator.gd" id="7_tr8b4"]
+[ext_resource type="Script" path="res://scripts/main/force_indicator.gd" id="7_tr8b4"]
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
 [ext_resource type="Texture2D" uid="uid://bcw4ct7h86aqq" path="res://assets/aim_force.png" id="8_1qftq"]
-[ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
+[ext_resource type="PackedScene" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
@@ -53,7 +53,6 @@ texture = ExtResource("5_o347i")
 [node name="ForceIndicator" type="Node2D" parent="LaunchManager"]
 script = ExtResource("7_tr8b4")
 force_gauge_el_texture = ExtResource("8_1qftq")
-metadata/_custom_type_script = "uid://de3s64g4d4bxi"
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("launch_manager", "pebble")]
 script = ExtResource("6_7ulqd")
@@ -68,6 +67,7 @@ texture = SubResource("PlaceholderTexture2D_7ulqd")
 position = Vector2(-155, 55)
 script = ExtResource("7_wedpv")
 initial_position = Vector2(-155, 55)
+initial_speed = 5.0
 gravity = 100.0
 friction_x = 0.99
 

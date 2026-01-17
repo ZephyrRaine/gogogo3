@@ -26,6 +26,7 @@ SceneLoader="*res://addons/maaacks_game_template/base/nodes/autoloads/scene_load
 ProjectMusicController="*res://addons/maaacks_game_template/base/nodes/autoloads/music_controller/project_music_controller.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/nodes/autoloads/ui_sound_controller/project_ui_sound_controller.tscn"
 EventBus="*res://scripts/main/event_bus.gd"
+ObjectManager="*res://scripts/main/object_manager.gd"
 
 [debug]
 
