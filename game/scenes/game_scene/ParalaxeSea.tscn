@@ -1,14 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://bs48nvkckyw6j"]
+[gd_scene load_steps=19 format=3 uid="uid://bs48nvkckyw6j"]
 
 [ext_resource type="Texture2D" uid="uid://d0hljdfwhveh6" path="res://assets/Bg_boucle/cliff_boucle_1.png" id="4_rjc1m"]
 [ext_resource type="Texture2D" uid="uid://dubl457kd6vrg" path="res://assets/Bg_boucle/cliff_boucle_2.png" id="5_1jf7c"]
 [ext_resource type="Texture2D" uid="uid://bekh4bxe2drqe" path="res://assets/Bg_boucle/Bg_sky.png" id="6_ah1jf"]
-[ext_resource type="Texture2D" uid="uid://csc0e6vrau3ng" path="res://assets/Bg_boucle/cloud_boucle_6.png" id="7_dbfex"]
-[ext_resource type="Texture2D" uid="uid://cxtrahd6wk7v3" path="res://assets/Bg_boucle/cloud_boucle_5.png" id="8_nqhqh"]
-[ext_resource type="Texture2D" uid="uid://4vn5lskora7c" path="res://assets/Bg_boucle/cloud_boucle_4.png" id="9_jn3w7"]
-[ext_resource type="Texture2D" uid="uid://34jocxq3vjka" path="res://assets/Bg_boucle/cloud_boucle_3.png" id="10_8480k"]
-[ext_resource type="Texture2D" uid="uid://c4w1bl4v171dh" path="res://assets/Bg_boucle/cloud_boucle_2.png" id="11_oryyj"]
-[ext_resource type="Texture2D" uid="uid://cg5jj18idlrot" path="res://assets/Bg_boucle/cloud_boucle_1.png" id="12_tng4n"]
 [ext_resource type="Texture2D" uid="uid://bcttwpj3jkx2o" path="res://assets/Bg_boucle/fMaskar_cliffs.png" id="13_qir2g"]
 [ext_resource type="Texture2D" uid="uid://y65ykriu888h" path="res://assets/Bg_boucle/Mask_water_far.png" id="14_soq7q"]
 [ext_resource type="Texture2D" uid="uid://cf7400b6o6g8j" path="res://assets/Bg_boucle/Mask_water_ricochet.png" id="15_errmt"]
@@ -34,32 +28,8 @@ autoscroll = Vector2(-10, 0)
 repeat_times = 3
 
 [node name="BgSky" type="Sprite2D" parent="Sky"]
-position = Vector2(1735, -135.5)
+position = Vector2(1737, -135)
 texture = ExtResource("6_ah1jf")
-
-[node name="CloudBoucle6" type="Sprite2D" parent="Sky"]
-position = Vector2(2000, -293.5)
-texture = ExtResource("7_dbfex")
-
-[node name="CloudBoucle5" type="Sprite2D" parent="Sky"]
-position = Vector2(1090, -195.5)
-texture = ExtResource("8_nqhqh")
-
-[node name="CloudBoucle4" type="Sprite2D" parent="Sky"]
-position = Vector2(1647, -115.5)
-texture = ExtResource("9_jn3w7")
-
-[node name="CloudBoucle3" type="Sprite2D" parent="Sky"]
-position = Vector2(1389, -197.5)
-texture = ExtResource("10_8480k")
-
-[node name="CloudBoucle2" type="Sprite2D" parent="Sky"]
-position = Vector2(2828, -132.5)
-texture = ExtResource("11_oryyj")
-
-[node name="CloudBoucle1" type="Sprite2D" parent="Sky"]
-position = Vector2(579, -150.5)
-texture = ExtResource("12_tng4n")
 
 [node name="Sea" type="Parallax2D" parent="."]
 repeat_size = Vector2(500, 0)
@@ -74,76 +44,62 @@ texture = ExtResource("14_soq7q")
 position = Vector2(2017, 223.5)
 texture = ExtResource("15_errmt")
 
-[node name="CliffBoucle1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("4_rjc1m")
-
-[node name="CliffBoucle2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
-texture = ExtResource("5_1jf7c")
-
 [node name="FMaskarCliffs" type="Sprite2D" parent="."]
 position = Vector2(2815, -51.5)
 texture = ExtResource("13_qir2g")
 
+[node name="CliffBoucle1" type="Sprite2D" parent="."]
+position = Vector2(3266, -34)
+texture = ExtResource("4_rjc1m")
+
+[node name="CliffBoucle2" type="Sprite2D" parent="."]
+position = Vector2(4065, -32)
+texture = ExtResource("5_1jf7c")
+
 [node name="SpeedTrame1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(692, -130)
 texture = ExtResource("16_yp6ev")
 
 [node name="SpeedTrame2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(529, -57)
 texture = ExtResource("17_tt2r4")
 
 [node name="SpeedTrame3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(301.93, -93.01)
 texture = ExtResource("18_32521")
 
 [node name="SpeedTrame4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(240, -132)
 texture = ExtResource("19_10o44")
 
 [node name="SpeedTrame5" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(446, -161)
 texture = ExtResource("20_mt4c4")
 
 [node name="WaterReflect1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(259, 28)
 texture = ExtResource("21_552y1")
 
 [node name="WaterReflect2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(678, 30)
 texture = ExtResource("22_n8fin")
 
 [node name="WaterReflect3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(468, 32)
 texture = ExtResource("23_4bmle")
 
 [node name="WaterReflectBig1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(408, 174)
 texture = ExtResource("24_x3mam")
 
 [node name="WaterReflectBig2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(1412, 125)
 texture = ExtResource("25_7cdti")
 
 [node name="WaterReflectBig3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(876, 204)
 texture = ExtResource("26_j7cu2")
 
 [node name="WaterReflectBig4" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(2727, 485.5)
+position = Vector2(915, 113)
 texture = ExtResource("27_wyssq")
