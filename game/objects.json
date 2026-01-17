@@ -1,0 +1,75 @@
+[
+  {
+    "id": "feather_weight",
+    "name": "Feather Weight",
+    "description": "Reduce gravity by 10%",
+    "effects": [
+      { "trigger": "passive", "stat": "gravity", "op": "mul", "value": 0.9 }
+    ]
+  },
+  {
+    "id": "rubber_coating",
+    "name": "Rubber Coating",
+    "description": "Bounce 10% more",
+    "effects": [
+      { "trigger": "passive", "stat": "bounce_ratio", "op": "mul", "value": 1.1 }
+    ]
+  },
+  {
+    "id": "rocket_booster",
+    "name": "Rocket Booster",
+    "description": "Initial speed x 2",
+    "effects": [
+      { "trigger": "on_launch", "stat": "initial_speed", "op": "mul", "value": 2.0 }
+    ]
+  },
+  {
+    "id": "headstart",
+    "name": "Headstart",
+    "description": "Add 100 to your distance score",
+    "effects": [
+      { "trigger": "on_score", "stat": "score_distance", "op": "add", "value": 100 }
+    ]
+  },
+  {
+    "id": "echo_chamber",
+    "name": "Echo Chamber",
+    "description": "Each bounce counts twice",
+    "effects": [
+      { "trigger": "on_bounce_count", "stat": "bounce_count_amount", "op": "set", "value": 2 }
+    ]
+  },
+  {
+    "id": "sniper_training",
+    "name": "Sniper Training",
+    "description": "Each perfect aim adds 10% to initial speed (Permanent)",
+    "effects": [
+      { "trigger": "on_perfect_aim", "stat": "initial_speed_perm_buff", "op": "add", "value": 0.1, "is_permanent": true }
+    ]
+  },
+  {
+    "id": "bullseye_bonus",
+    "name": "Bullseye Bonus",
+    "description": "Each perfect aim adds +1 to final multiplier",
+    "effects": [
+      { "trigger": "on_perfect_aim", "stat": "final_score_multiplier", "op": "add", "value": 1.0, "is_permanent": true }
+    ]
+  },
+  {
+    "id": "chaos_spring",
+    "name": "Chaos Spring",
+    "description": "20% chance of bouncing twice higher",
+    "effects": [
+      { "trigger": "on_bounce_physics", "chance": 0.2, "stat": "velocity_y", "op": "mul", "value": 2.0 }
+    ]
+  },
+  {
+    "id": "overdrive",
+    "name": "Overdrive",
+    "description": "For the next 5 throws, initial speed x 5",
+    "uses_remaining": 5,
+    "effects": [
+      { "trigger": "on_launch", "stat": "initial_speed", "op": "mul", "value": 5.0 }
+    ]
+  }
+]
