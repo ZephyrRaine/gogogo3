@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duhqhbgxmug7m"]
+[gd_scene load_steps=13 format=3 uid="uid://duhqhbgxmug7m"]
 
 [ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
 [ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
@@ -7,23 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
 [ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
-
-[sub_resource type="Gradient" id="Gradient_cw6cr"]
-colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6y8rp"]
-gradient = SubResource("Gradient_cw6cr")
-width = 2364
-height = 174
-
-[sub_resource type="Gradient" id="Gradient_jpbhf"]
-colors = PackedColorArray(0, 1, 0.011764706, 1, 0, 0.39373094, 0.34176618, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cw6cr"]
-gradient = SubResource("Gradient_jpbhf")
-width = 224
-height = 179
-fill = 1
+[ext_resource type="PackedScene" uid="uid://oqgusgqroyfb" path="res://scenes/game_scene/ParalaxeSea.tscn" id="8_fhy3a"]
 
 [sub_resource type="Gradient" id="Gradient_lhtia"]
 colors = PackedColorArray(0.9867516, 0.9867516, 0.9867516, 1, 1, 1, 1, 1)
@@ -40,13 +24,8 @@ size = Vector2(8, 8)
 
 [node name="Game" type="Node2D"]
 
-[node name="Water" type="Sprite2D" parent="."]
-position = Vector2(1026, 94)
-texture = SubResource("GradientTexture2D_6y8rp")
-
-[node name="Ground" type="Sprite2D" parent="."]
-position = Vector2(-266, 96)
-texture = SubResource("GradientTexture2D_cw6cr")
+[node name="Sea" parent="." instance=ExtResource("8_fhy3a")]
+position = Vector2(-326.89, -1.535)
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(-179, 60)
