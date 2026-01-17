@@ -4,10 +4,23 @@ class_name GameManager
 @export var launch_manager: LaunchManager
 @export var pebble: Pebble
 
+var rounds = [
+	100,
+	300,
+	800,
+	2000,
+	5000,
+	11000,
+	20000,
+	35000,
+	50000
+]
+var current_round = 0;
 
 func _ready() -> void:
 	EventBus.new_launch.connect(received_launch)
 	EventBus.scoring_done.connect(scoring_done)
+	EventBus.launch_done.connect(launch_done)
 	EventBus.shop_ended.connect(launch_manager.request_launch)
 	launch_manager.request_launch()
 
@@ -15,6 +28,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 
+func launch_done(distance:float, bounces:int):
+	EventBus.scoring_show.emit(distance, bounces, rounds[current_round])
 
 func scoring_done():
 	EventBus.shop_requested.emit()

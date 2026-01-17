@@ -12,6 +12,7 @@ func _ready() -> void:
 	selected_card.connect(card_clicked)
 	EventBus.shop_requested.connect(shop_requested)
 
+
 func shop_requested():
 	for n in get_children():
 		n.queue_free()
@@ -28,6 +29,7 @@ func card_clicked(index: int):
 		(get_child(currently_selected) as ObjectCard).is_selected = false
 	currently_selected = index
 	(get_child(currently_selected) as ObjectCard).is_selected = true
+
 
 func continue_clicked():
 	EventBus.shop_ended.emit()

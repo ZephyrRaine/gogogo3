@@ -4,6 +4,7 @@ class_name Pebble
 @export var initial_position: Vector2
 @export var initial_speed = 1.0
 @export var gravity = 9.81
+@export var bounce_ratio = 0.8
 @export var friction_y = 0.98
 @export var friction_x = 0.98
 @export var water_height = 93.0
@@ -45,7 +46,7 @@ func _process(delta: float) -> void:
 	if position.y > water_height:
 		if velocity.y > min_bounce_velocity:
 			bounces += 1
-			velocity.y *= -0.8
+			velocity.y *= -bounce_ratio
 			position.y = 92.9
 		else:
 			visible = false
