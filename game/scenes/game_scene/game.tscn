@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://duhqhbgxmug7m"]
+
+[ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
+[ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
+[ext_resource type="Texture2D" uid="uid://hb34sl2fdjfg" path="res://assets/aim_needle.png" id="2_6y8rp"]
+[ext_resource type="Script" uid="uid://c486e1smalas7" path="res://scripts/main/aim_indicator.gd" id="2_700et"]
+[ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
+[ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
+[ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
+
+[sub_resource type="Gradient" id="Gradient_cw6cr"]
+colors = PackedColorArray(0, 0, 1, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6y8rp"]
+gradient = SubResource("Gradient_cw6cr")
+width = 2364
+height = 174
+
+[sub_resource type="Gradient" id="Gradient_jpbhf"]
+colors = PackedColorArray(0, 1, 0.011764706, 1, 0, 0.39373094, 0.34176618, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cw6cr"]
+gradient = SubResource("Gradient_jpbhf")
+width = 224
+height = 179
+fill = 1
+
+[sub_resource type="Gradient" id="Gradient_lhtia"]
+colors = PackedColorArray(0.9867516, 0.9867516, 0.9867516, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jpbhf"]
+gradient = SubResource("Gradient_lhtia")
+width = 32
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
+size = Vector2(1000, 4)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wedpv"]
+size = Vector2(8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wedpv"]
+font_size = 54
+
+[node name="Game" type="Node2D"]
+
+[node name="Water" type="Sprite2D" parent="."]
+position = Vector2(1026, 94)
+texture = SubResource("GradientTexture2D_6y8rp")
+
+[node name="Ground" type="Sprite2D" parent="."]
+position = Vector2(-266, 96)
+texture = SubResource("GradientTexture2D_cw6cr")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(-179, 60)
+texture = SubResource("GradientTexture2D_jpbhf")
+
+[node name="LaunchManager" type="Node2D" parent="." node_paths=PackedStringArray("aim_indicator")]
+visible = false
+script = ExtResource("1_700et")
+current_launching_phase = 1
+aim_indicator = NodePath("AimIndicator")
+aim_ratio_speed = 0.75
+aim_ratio_target = 0.5
+
+[node name="AimIndicator" type="Sprite2D" parent="LaunchManager" node_paths=PackedStringArray("needle_pivot", "target_pivot")]
+position = Vector2(-63, 61)
+texture = ExtResource("1_cw6cr")
+script = ExtResource("2_700et")
+needle_pivot = NodePath("NeedlePivot")
+target_pivot = NodePath("TargetPivot")
+
+[node name="NeedlePivot" type="Node2D" parent="LaunchManager/AimIndicator"]
+position = Vector2(-32, 0)
+
+[node name="AimNeedle" type="Sprite2D" parent="LaunchManager/AimIndicator/NeedlePivot"]
+position = Vector2(32, 0)
+texture = ExtResource("2_6y8rp")
+
+[node name="TargetPivot" type="Node2D" parent="LaunchManager/AimIndicator"]
+position = Vector2(-32, 0)
+
+[node name="TargetNeedle" type="Sprite2D" parent="LaunchManager/AimIndicator/TargetPivot"]
+position = Vector2(32, 0)
+texture = ExtResource("5_o347i")
+
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("launch_manager", "pebble")]
+script = ExtResource("6_7ulqd")
+launch_manager = NodePath("../LaunchManager")
+pebble = NodePath("../Pebble")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(346, 93)
+texture = SubResource("PlaceholderTexture2D_7ulqd")
+
+[node name="Pebble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-155, 55)
+texture = SubResource("PlaceholderTexture2D_wedpv")
+script = ExtResource("7_wedpv")
+initial_position = Vector2(-155, 55)
+initial_speed = 10.0
+gravity = 100.0
+friction_x = 0.99
+
+[node name="Camera2D" type="Camera2D" parent="Pebble"]
+position = Vector2(124, -55)
+zoom = Vector2(2, 2)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Pebble/Camera2D"]
+
+[node name="Label" type="Label" parent="Pebble/Camera2D/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -524.5
+offset_right = 524.5
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "DISTANCE * BOUNCES = TOTAL"
+label_settings = SubResource("LabelSettings_wedpv")
+horizontal_alignment = 1
