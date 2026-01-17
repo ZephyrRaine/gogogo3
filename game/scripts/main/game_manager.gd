@@ -8,6 +8,7 @@ class_name GameManager
 func _ready() -> void:
 	EventBus.new_launch.connect(received_launch)
 	EventBus.scoring_done.connect(scoring_done)
+	EventBus.shop_ended.connect(launch_manager.request_launch)
 	launch_manager.request_launch()
 
 func _input(event: InputEvent) -> void:
@@ -16,7 +17,7 @@ func _input(event: InputEvent) -> void:
 
 
 func scoring_done():
-	launch_manager.request_launch()
+	EventBus.shop_requested.emit()
 
 #TODO: make it so straight launches are better than up launches lol
 func received_launch(aim_percentage: float, force_percentage: float):

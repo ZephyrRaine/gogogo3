@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://br7qik73bu5r4"]
+
+[ext_resource type="Script" uid="uid://cguf67igybjnl" path="res://scenes/game_scene/hud/object_card.gd" id="1_6vvia"]
+[ext_resource type="Texture2D" uid="uid://d2g18p0oa0lxp" path="res://assets/PNG/pp nimona.PNG" id="1_pcc2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lulfu"]
+resource_local_to_scene = true
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.91764706, 0.87058824, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ObjectCard" type="Panel"]
+custom_minimum_size = Vector2(150, 300)
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lulfu")
+script = ExtResource("1_6vvia")
+selected_border_color = Color(1, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "OBJET 1"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_pcc2e")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Double la puissance de blablabal"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

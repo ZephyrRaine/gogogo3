@@ -1,10 +1,13 @@
 extends CanvasLayer
+class_name HUD
 
-@onready var score_label = $"ScoreLabel"
-
+@export var score_label : Label
+@export var shop : Control
 
 func _ready() -> void:
 	EventBus.launch_done.connect(display_score)
+	EventBus.shop_requested.connect(display_shop)
+	EventBus.shop_ended.connect(hide_shop)
 
 func _input(event: InputEvent) -> void:
 	if !score_label.visible || !event.is_action_pressed("interact"):
@@ -17,3 +20,9 @@ func _input(event: InputEvent) -> void:
 func display_score(distance: float, bounces: int):
 	score_label.visible = true
 	score_label.text = "%d x %d = %d" % [distance, bounces + 1, distance * (bounces + 1)]
+
+func display_shop():
+	shop.visible = true
+
+func hide_shop():
+	shop.visible = false
