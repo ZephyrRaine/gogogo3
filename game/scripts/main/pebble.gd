@@ -98,7 +98,6 @@ func start_bounce():
 		launch_over()
 	else:
 		distance += p2.x - p0.x
-		score_distance += (p2.x - p0.x) * 0.1 # divided by 10 to balance
 
 func end_bounce():
 	# HANDLE BOUNCE COUNT LOGIC
@@ -129,6 +128,7 @@ func _process(delta: float) -> void:
 	if !visible:
 		return
 
+	
 	var juiced_t = juicy_velocity_curve.sample(t)
 	var q0 = p0.lerp(p1, juiced_t)
 	var q1 = p1.lerp(p2, juiced_t)
@@ -136,6 +136,8 @@ func _process(delta: float) -> void:
 	pebble_shadow.position.x = position.x
 	
 	t += delta * velocity
+	
+	score_distance = position.x * 0.1 # divided by 10 to balance
 
 	if (t >= 1.0 || position.y > water_height):
 		position.y = water_height
