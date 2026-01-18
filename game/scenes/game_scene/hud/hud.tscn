@@ -1,22 +1,34 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=12 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_3cd5f"]
 [ext_resource type="Script" uid="uid://dan438uyjxutk" path="res://scripts/main/cards_manager.gd" id="2_fjoyr"]
 [ext_resource type="PackedScene" uid="uid://br7qik73bu5r4" path="res://scenes/game_scene/hud/object_card.tscn" id="2_lulfu"]
-[ext_resource type="Script" uid="uid://cfd8050tpsw4v" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
+[ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="3_bodji"]
+[ext_resource type="Script" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
+[ext_resource type="Script" uid="uid://c2kmh1vuqhs8w" path="res://scripts/main/hud/rebound_label.gd" id="4_s1vs5"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v20na"]
 font = ExtResource("2_3cd5f")
 font_size = 54
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("score_label", "in_game_score_label", "shop", "tournament_view")]
+[sub_resource type="LabelSettings" id="LabelSettings_s1vs5"]
+font = ExtResource("2_3cd5f")
+font_size = 54
+font_color = Color(0.7921569, 0.7176471, 0, 1)
+
+[sub_resource type="Curve" id="Curve_s1vs5"]
+_data = [Vector2(0, 0), 0.0, 3.3333333, 0, 1, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.4620939, 0.52808994), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("score_label", "in_game_score_label", "shop", "tournament_view", "effects_manager")]
 script = ExtResource("1_fjoyr")
 score_label = NodePath("ScoreLabel")
 in_game_score_label = NodePath("InGameScore")
 shop = NodePath("SHOP")
 tournament_view = NodePath("TOURNAMENT_VIEW")
+effects_manager = NodePath("EffectsManager")
 
 [node name="ScoreLabel" type="Label" parent="."]
 visible = false
@@ -44,6 +56,31 @@ grow_horizontal = 2
 text = "SCORE"
 label_settings = SubResource("LabelSettings_v20na")
 horizontal_alignment = 1
+
+[node name="EffectsManager" type="Control" parent="." node_paths=PackedStringArray("rebound_label_lucky")]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_bodji")
+rebound_label_lucky = NodePath("ReboundLabel_lucky")
+metadata/_custom_type_script = "uid://dc8r6k04htw4f"
+
+[node name="ReboundLabel_lucky" type="Label" parent="EffectsManager"]
+layout_mode = 1
+offset_right = 119.0
+offset_bottom = 59.0
+scale = Vector2(0.5, 0.5)
+text = "LUCKY!"
+label_settings = SubResource("LabelSettings_s1vs5")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_s1vs5")
+anim_curve_y = SubResource("Curve_s1vs5")
+metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
 
 [node name="ObjectsContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 80)
