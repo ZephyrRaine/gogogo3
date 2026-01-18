@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkrc5qt5oqodg"]
+
+[ext_resource type="Script" uid="uid://bde7kfi3y1afq" path="res://scenes/game_scene/hud/tournament_row.gd" id="1_s0od7"]
+
+[sub_resource type="Theme" id="Theme_q2dkn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2w51u"]
+font_size = 35
+
+[node name="TournamentRow" type="MarginContainer" node_paths=PackedStringArray("row_label", "color_rect")]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_s0od7")
+row_label = NodePath("TournamentRow/Label")
+color_rect = NodePath("ColorRect")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.27754372, 0.25552216, 0.2725417, 1)
+
+[node name="TournamentRow" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_q2dkn")
+
+[node name="Label" type="Label" parent="TournamentRow"]
+layout_mode = 2
+text = "#1 | 1000 pts | +3po"
+label_settings = SubResource("LabelSettings_2w51u")

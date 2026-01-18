@@ -13,14 +13,14 @@ func _ready() -> void:
 
 func shop_requested():
 	for n in get_children():
-		n.queue_free() # [cite: 8]
+		n.queue_free()
 
 	currently_selected = -1
 	displayed_item_ids.clear()
 
 	# Get all possible IDs from our ObjectManager DB
 	var available_ids = ObjectManager.all_items_db.keys()
-	available_ids.shuffle() # Randomize the order
+	available_ids.shuffle()
 
 	for i in range(min(3, available_ids.size())):
 		var item_id = available_ids[i]
@@ -28,7 +28,7 @@ func shop_requested():
 
 		var card = card_prefab.instantiate() as ObjectCard
 		add_child(card)
-		card.init(selected_card, item_data) # Pass the item data to the card [cite: 8, 9]
+		card.init(selected_card, item_data)
 		displayed_item_ids.append(item_id)
 
 func card_clicked(index: int):

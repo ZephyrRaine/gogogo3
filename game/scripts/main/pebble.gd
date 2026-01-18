@@ -53,7 +53,7 @@ func _ready() -> void:
 	visible = false
 	pebble_shadow.visible = false
 	pebble_shadow.position.y = water_height
-	EventBus.scoring_done.connect(func(): position = initial_position)
+	EventBus.scoring_done.connect(func(_score): position = initial_position)
 
 func launch_pebble(launch_direction: Vector2, launch_force: float):
 	visible = true

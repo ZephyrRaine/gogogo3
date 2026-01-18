@@ -8,6 +8,7 @@ class_name ObjectCard
 # Add these exports to your scene and link them to Labels in your Card scene [cite: 9]
 @export var title_label : Label
 @export var desc_label : Label
+@export var price_label : Label
 
 var clicked_signal : Signal
 var item_id : String = "" # Store which item this card represents

@@ -25,6 +25,7 @@ point_count = 3
 [node name="Sea" parent="." instance=ExtResource("1_fhy3a")]
 
 [node name="LaunchManager" type="Node2D" parent="." node_paths=PackedStringArray("aim_indicator", "force_indicator")]
+visible = false
 script = ExtResource("1_700et")
 current_launching_phase = 1
 aim_indicator = NodePath("AimIndicator")
