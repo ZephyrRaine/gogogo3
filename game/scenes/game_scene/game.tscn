@@ -87,5 +87,6 @@ position = Vector2(124, -145)
 zoom = Vector2(1.5, 1.5)
 
 [node name="PebbleAnim" parent="Pebble" instance=ExtResource("9_oxnsv")]
+scale = Vector2(1, 0.5)
 autoplay = "default"
 frame_progress = 0.24286151
