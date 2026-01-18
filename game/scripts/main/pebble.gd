@@ -98,7 +98,7 @@ func start_bounce():
 		launch_over()
 	else:
 		distance += p2.x - p0.x
-		score_distance += p2.x - p0.x # possible modifier here
+		score_distance += (p2.x - p0.x) * 0.1 # divided by 10 to balance
 
 func end_bounce():
 	# HANDLE BOUNCE COUNT LOGIC
