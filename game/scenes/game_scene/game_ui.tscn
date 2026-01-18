@@ -1,11 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://clxs5gwisal5m"]
+[gd_scene load_steps=15 format=3 uid="uid://clxs5gwisal5m"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_3re04"]
 [ext_resource type="PackedScene" uid="uid://duhqhbgxmug7m" path="res://scenes/game_scene/game.tscn" id="5_y85d6"]
 [ext_resource type="PackedScene" uid="uid://dh1ln5wlm85dr" path="res://scenes/game_scene/hud/hud.tscn" id="6_y85d6"]
+[ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="7_3re04"]
+[ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="8_ascoc"]
+[ext_resource type="Texture2D" uid="uid://ba2pbu4hs4oku" path="res://assets/UI/Score_screen/mask_splash.png" id="9_wr4n6"]
+[ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="10_ukb12"]
+[ext_resource type="Texture2D" uid="uid://dqw5saf0b0ntr" path="res://assets/UI/Score_screen/mask_egal_score.png" id="11_i7m4m"]
 [ext_resource type="Script" uid="uid://bnhmjy582mlax" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="11_ulq3g"]
+[ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="12_rkfhe"]
+[ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="13_g2ndc"]
+[ext_resource type="Texture2D" uid="uid://xx2vbxuvuim4" path="res://assets/UI/Score_screen/splash.png" id="14_0v86b"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -43,3 +51,35 @@ script = ExtResource("11_ulq3g")
 
 [node name="Game" parent="ViewportContainer" instance=ExtResource("5_y85d6")]
 position = Vector2(746, 397)
+
+[node name="MaskScore" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("7_3re04")
+
+[node name="MaskSpeed" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("8_ascoc")
+
+[node name="MaskSplash" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("9_wr4n6")
+
+[node name="MaskX" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("10_ukb12")
+
+[node name="MaskEgalScore" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("11_i7m4m")
+
+[node name="Score" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("12_rkfhe")
+
+[node name="Speed" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("13_g2ndc")
+
+[node name="Splash" type="Sprite2D" parent="."]
+position = Vector2(849, 259.5)
+texture = ExtResource("14_0v86b")
