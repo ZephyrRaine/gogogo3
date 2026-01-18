@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs48nvkckyw6j"]
+[gd_scene load_steps=21 format=3 uid="uid://bs48nvkckyw6j"]
 
+[ext_resource type="Texture2D" uid="uid://dlevf2hyuf10r" path="res://assets/Bg_boucle/BG_clouds.png" id="2_55l2q"]
 [ext_resource type="Texture2D" uid="uid://d0hljdfwhveh6" path="res://assets/Bg_boucle/cliff_boucle_1.png" id="4_rjc1m"]
 [ext_resource type="Texture2D" uid="uid://dubl457kd6vrg" path="res://assets/Bg_boucle/cliff_boucle_2.png" id="5_1jf7c"]
 [ext_resource type="Texture2D" uid="uid://bekh4bxe2drqe" path="res://assets/Bg_boucle/Bg_sky.png" id="6_ah1jf"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dsd8wde48tek0" path="res://assets/Bg_boucle/speed_trame_2.png" id="17_tt2r4"]
 [ext_resource type="Texture2D" uid="uid://bmwvhwyu26beh" path="res://assets/Bg_boucle/speed_trame_3.png" id="18_32521"]
 [ext_resource type="Texture2D" uid="uid://c7yivjq0ulohp" path="res://assets/Bg_boucle/speed_trame_4.png" id="19_10o44"]
+[ext_resource type="Texture2D" uid="uid://c7d2lwuoqy73n" path="res://assets/BG_lancer/BG_1_export.png" id="19_o8qqe"]
 [ext_resource type="Texture2D" uid="uid://b838dt5f2q15c" path="res://assets/Bg_boucle/speed_trame_5.png" id="20_mt4c4"]
 [ext_resource type="Texture2D" uid="uid://b23c40576p86n" path="res://assets/Bg_boucle/water_reflect_1.png" id="21_552y1"]
 [ext_resource type="Texture2D" uid="uid://dlleu1xcjxnv6" path="res://assets/Bg_boucle/water_reflect_2.png" id="22_n8fin"]
@@ -22,13 +24,18 @@
 [node name="Sea" type="Node2D"]
 
 [node name="Sky" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(0.2, 0.2)
 repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-15, 0)
 repeat_times = 3
 
 [node name="BgSky" type="Sprite2D" parent="Sky"]
 position = Vector2(1774, -135)
 texture = ExtResource("6_ah1jf")
+
+[node name="BgClouds" type="Sprite2D" parent="Sky"]
+position = Vector2(846, -282)
+texture = ExtResource("2_55l2q")
 
 [node name="Sea" type="Parallax2D" parent="."]
 repeat_size = Vector2(550, 0)
@@ -121,3 +128,7 @@ texture = ExtResource("19_10o44")
 [node name="SpeedTrame5" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(446, -161)
 texture = ExtResource("20_mt4c4")
+
+[node name="Bg1Export" type="Sprite2D" parent="."]
+position = Vector2(-207, 5)
+texture = ExtResource("19_o8qqe")
