@@ -1,14 +1,17 @@
 extends CanvasLayer
 class_name HUD
 
-@export var score_label: Label
-@export var in_game_score_label: Label
+@export var in_game_score_label:Label
+@export var score_root:Control
+@export var score_total_label: Label
+@export var score_dist_label : Label
+@export var score_bounce_label : Label
 @export var shop: Control
 @export var tournament_view : TournamentView
 
 @export var effects_manager:EffectsManager
 
-var round_score
+var round_score:int
 var round_rank
 var pebble : Pebble
 
@@ -31,8 +34,8 @@ func hide_pebble_score(_a, _b):
 	in_game_score_label.visible = false;
 
 func _input(event: InputEvent) -> void:
-	if score_label.visible && event.is_action_pressed("interact"):
-		score_label.visible = false
+	if score_root.visible && event.is_action_pressed("interact"):
+		score_root.visible = false
 		await get_tree().create_timer(0.25).timeout
 		EventBus.scoring_done.emit(round_score)
 
@@ -57,10 +60,13 @@ func display_score(distance: float, bounces: int):
 	# Apply the Permanent Multiplier (Bullseye Bonus)
 	var multiplier = (bounces + 1) * ObjectManager.permanent_stats["final_score_multiplier"]
 
-	score_label.visible = true
+	score_root.visible = true
 	# Update text logic to use modified values
-	round_score = final_dist * multiplier
-	score_label.text = "\n%d x %.1f = %d" % [final_dist, multiplier, round_score]
+	round_score = int(final_dist * multiplier)
+	print(round_score)
+	score_total_label.text = "%d" % [round_score]
+	score_bounce_label.text = "%d" % [multiplier]
+	score_dist_label.text = "%d" % [final_dist]
 
 
 func display_shop(_m):
