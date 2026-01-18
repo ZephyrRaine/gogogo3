@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=24 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_3cd5f"]
 [ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="3_bodji"]
 [ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="3_vl2ax"]
 [ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="4_5jsxa"]
-[ext_resource type="Script" uid="uid://cfd8050tpsw4v" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
+[ext_resource type="Script" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
 [ext_resource type="Script" uid="uid://c2kmh1vuqhs8w" path="res://scripts/main/hud/rebound_label.gd" id="4_s1vs5"]
 [ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="5_7d4ub"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
@@ -14,9 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="8_erl8u"]
 [ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="9_lmh6r"]
 [ext_resource type="Texture2D" uid="uid://dqw5saf0b0ntr" path="res://assets/UI/Score_screen/mask_egal_score.png" id="10_21gm5"]
-[ext_resource type="PackedScene" uid="uid://c24rvmkqk7e80" path="res://scenes/game_scene/hud/shop.tscn" id="13_7knrv"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_erl8u"]
+[ext_resource type="PackedScene" path="res://scenes/game_scene/hud/shop.tscn" id="13_7knrv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vl2ax"]
 content_margin_left = 30.0
@@ -68,32 +66,18 @@ point_count = 3
 font = ExtResource("2_3cd5f")
 font_size = 54
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("in_game_score_label", "score_root", "score_total_label", "score_dist_label", "score_bounce_label", "shop", "tournament_view", "effects_manager")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("score_root", "score_total_root", "score_total_label", "score_dist_label", "score_bounce_label", "tournament_view", "effects_manager")]
 script = ExtResource("1_fjoyr")
-in_game_score_label = NodePath("InGameScoreLabel")
 score_root = NodePath("ScoreLabel")
+score_total_root = NodePath("ScoreLabel/MarginContainer")
 score_total_label = NodePath("ScoreLabel/MarginContainer/cont_score/Container_Score/Label_SCORE")
 score_dist_label = NodePath("ScoreLabel/cont_speed/Container_Dist/Label_Dist")
 score_bounce_label = NodePath("ScoreLabel/cont_splash/MarginContainer2/Container_Bounce/Label_Bounce")
-shop = NodePath("")
 tournament_view = NodePath("TOURNAMENT_VIEW")
 effects_manager = NodePath("EffectsManager")
 
-[node name="InGameScoreLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -25.0
-offset_top = 90.0
-offset_right = 26.0
-offset_bottom = 113.0
-grow_horizontal = 2
-text = "SCORE"
-label_settings = SubResource("LabelSettings_erl8u")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="ScoreLabel" type="HBoxContainer" parent="."]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -168,6 +152,7 @@ texture = ExtResource("7_7knrv")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="ScoreLabel"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = -40
 theme_override_constants/margin_bottom = -14
