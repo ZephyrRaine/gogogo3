@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=8 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
+[ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_3cd5f"]
 [ext_resource type="Script" uid="uid://dan438uyjxutk" path="res://scripts/main/cards_manager.gd" id="2_fjoyr"]
 [ext_resource type="PackedScene" uid="uid://br7qik73bu5r4" path="res://scenes/game_scene/hud/object_card.tscn" id="2_lulfu"]
 [ext_resource type="Script" uid="uid://cfd8050tpsw4v" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v20na"]
+font = ExtResource("2_3cd5f")
 font_size = 54
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("score_label", "in_game_score_label", "shop", "tournament_view")]
@@ -31,7 +33,6 @@ label_settings = SubResource("LabelSettings_v20na")
 horizontal_alignment = 1
 
 [node name="InGameScore" type="Label" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
