@@ -6,7 +6,7 @@ class_name HUD
 @export var score_total_label: Label
 @export var score_dist_label : Label
 @export var score_bounce_label : Label
-@export var shop: Control
+@onready var shop: Control = $"SHOP"
 @export var tournament_view : TournamentView
 
 @export var effects_manager:EffectsManager
