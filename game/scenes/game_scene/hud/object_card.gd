@@ -12,6 +12,8 @@ class_name ObjectCard
 
 var clicked_signal : Signal
 var item_id : String = "" # Store which item this card represents
+var can_be_selected = true
+var card_data;
 
 var is_selected : bool:
 	set(value):
@@ -21,8 +23,9 @@ var is_selected : bool:
 		else:
 			stylebox.border_color = Color.TRANSPARENT
 
-# Updated init to accept the item data dictionary [cite: 9]
+# Updated init to accept the item data dictionary
 func init(_clicked_signal, item_data: Dictionary):
+	card_data = item_data
 	clicked_signal = _clicked_signal
 	item_id = item_data["id"]
 
@@ -30,7 +33,15 @@ func init(_clicked_signal, item_data: Dictionary):
 		title_label.text = item_data["name"]
 	if desc_label:
 		desc_label.text = item_data["description"]
+	if price_label:
+		price_label.text = "%d$" % item_data["price"]
+
+func set_selectable(is_selectable):
+	can_be_selected = is_selectable
+	if !can_be_selected && is_selected:
+		is_selected = false
+	stylebox.bg_color = Color.WHITE if is_selectable else Color.DARK_GRAY
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		clicked_signal.emit(get_index()) # [cite: 9]
+	if can_be_selected && event.is_action_pressed("interact"):
+		clicked_signal.emit(get_index())

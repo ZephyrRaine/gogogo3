@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://br7qik73bu5r4"]
+[gd_scene load_steps=5 format=3 uid="uid://br7qik73bu5r4"]
 
 [ext_resource type="Script" uid="uid://cguf67igybjnl" path="res://scenes/game_scene/hud/object_card.gd" id="1_6vvia"]
 [ext_resource type="Texture2D" uid="uid://d2g18p0oa0lxp" path="res://assets/PNG/pp nimona.PNG" id="1_pcc2e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lulfu"]
 resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -15,15 +16,19 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="ObjectCard" type="Panel" node_paths=PackedStringArray("title_label", "desc_label")]
+[sub_resource type="LabelSettings" id="LabelSettings_6vvia"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="ObjectCard" type="Panel" node_paths=PackedStringArray("title_label", "desc_label", "price_label")]
 custom_minimum_size = Vector2(150, 300)
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lulfu")
 script = ExtResource("1_6vvia")
-selected_border_color = Color(1, 1, 1, 1)
+selected_border_color = Color(0.5372549, 1, 1, 1)
 title_label = NodePath("MarginContainer/VBoxContainer/Title")
 desc_label = NodePath("MarginContainer/VBoxContainer/Desc")
+price_label = NodePath("MarginContainer/VBoxContainer/Price")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -43,6 +48,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "OBJET 1"
+label_settings = SubResource("LabelSettings_6vvia")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
@@ -54,6 +60,7 @@ expand_mode = 5
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Double la puissance de blablabal"
+label_settings = SubResource("LabelSettings_6vvia")
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -61,6 +68,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(0, 23.755)
 layout_mode = 2
 text = "X po"
+label_settings = SubResource("LabelSettings_6vvia")
 horizontal_alignment = 1
 autowrap_mode = 2
 
