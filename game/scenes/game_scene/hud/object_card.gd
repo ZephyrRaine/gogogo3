@@ -28,11 +28,37 @@ func init(_clicked_signal, item_data: Dictionary):
 	card_data = item_data
 	clicked_signal = _clicked_signal
 	item_id = item_data["id"]
+	var raw_description = item_data.get("description", "")
+
+	if item_data.has("effects") and item_data["effects"].size() > 0:
+		var first_effect = item_data["effects"][0]
+
+		var display_value = str(first_effect["value"])
+
+		# Optimization: If it's a multiplier (1.1), show it as a percentage (10)
+		if first_effect["op"] == "mul":
+			var percentage = (first_effect["value"] - 1.0) * 100
+			# If value is < 1 (like 0.9 for gravity), show the reduction
+			if first_effect["value"] < 1.0:
+				percentage = (1.0 - first_effect["value"]) * 100
+			display_value = str(abs(round(percentage)))
+
+		if first_effect["op"] == "add":
+			if first_effect["value"] < 1.0:
+				var percentage = (first_effect["value"] - 1.0) * 100
+				display_value = str(abs(round(percentage)))
+
+		raw_description = raw_description.replace("{value}", display_value)
+
+		# 2. Parse the Chance (if it exists)
+		if first_effect.has("chance"):
+			var chance_val = str(round(first_effect["chance"] * 100))
+			raw_description = raw_description.replace("{chance}", chance_val)
 
 	if title_label:
-		title_label.text = item_data["name"]
+		title_label.text = item_data.get("name", item_data["id"])
 	if desc_label:
-		desc_label.text = item_data["description"]
+		desc_label.text = raw_description
 	if price_label:
 		price_label.text = "%d$" % item_data["price"]
 

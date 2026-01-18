@@ -1,84 +1,143 @@
 [
   {
-    "id": "feather_weight",
-    "name": "Feather Weight",
-    "description": "Reduce gravity by 10%",
+    "id": "speed_launch_pct",
+    "description": "launch {value}% faster",
     "price": 1,
     "effects": [
-      { "trigger": "passive", "stat": "gravity", "op": "mul", "value": 0.9 }
+      { "trigger": "passive", "stat": "initial_speed", "op": "mul", "value": 1.1 }
     ]
   },
   {
-    "id": "rubber_coating",
-    "name": "Rubber Coating",
-    "description": "Bounce 10% more",
+    "id": "perfect_mult_perm",
+    "description": "each perfect launch gives +{value} to final score mult (permanent)",
     "price": 1,
     "effects": [
-      { "trigger": "passive", "stat": "bounce_ratio", "op": "mul", "value": 1.1 }
+      { "trigger": "on_perfect_launch", "stat": "final_score_multiplier", "op": "add", "value": 1.0, "is_permanent": true }
     ]
   },
   {
-    "id": "rocket_booster",
-    "name": "Rocket Booster",
-    "description": "Initial speed x 2",
+    "id": "perfect_streak_mult",
+    "description": "each perfect launch gives +{value} to final score mult (permanent), resets on non perfect",
     "price": 1,
     "effects": [
-      { "trigger": "on_launch", "stat": "initial_speed", "op": "mul", "value": 2.0 }
+      { "trigger": "on_perfect_launch", "stat": "final_score_multiplier", "op": "add", "value": 10.0, "is_permanent": true, "reset_on_fail": "on_non_perfect" }
     ]
   },
   {
-    "id": "headstart",
-    "name": "Headstart",
-    "description": "Add 100 to your distance score",
+    "id": "slow_aim_minigame",
+    "description": "time slows down by {value}% during aiming minigame",
     "price": 1,
     "effects": [
-      { "trigger": "on_score", "stat": "score_distance", "op": "add", "value": 100 }
+      { "trigger": "on_aim", "stat": "aim_ratio_speed", "op": "mul", "value": 0.5 }
     ]
   },
   {
-    "id": "echo_chamber",
-    "name": "Echo Chamber",
-    "description": "Each bounce counts twice",
+    "id": "slow_force_minigame",
+    "description": "time slows down by {value}% during force minigame",
     "price": 1,
     "effects": [
-      { "trigger": "on_bounce_count", "stat": "bounce_count_amount", "op": "set", "value": 2 }
+      { "trigger": "on_force", "stat": "force_ratio_speed", "op": "mul", "value": 0.5 }
     ]
   },
   {
-    "id": "sniper_training",
-    "name": "Sniper Training",
-    "description": "Each perfect aim adds 10% to initial speed (Permanent)",
+    "id": "score_speed_add",
+    "description": "when scoring add +{value} to speed value",
     "price": 1,
     "effects": [
-      { "trigger": "on_perfect_aim", "stat": "initial_speed_perm_buff", "op": "add", "value": 0.1, "is_permanent": true }
+      { "trigger": "on_score", "stat": "speed_score", "op": "add", "value": 10.0 }
     ]
   },
   {
-    "id": "bullseye_bonus",
-    "name": "Bullseye Bonus",
-    "description": "Each perfect aim adds +1 to final multiplier",
+    "id": "score_speed_mult",
+    "description": "when scoring mult speed value by {value}",
     "price": 1,
     "effects": [
-      { "trigger": "on_perfect_aim", "stat": "final_score_multiplier", "op": "add", "value": 1.0, "is_permanent": true }
+      { "trigger": "on_score", "stat": "speed_score", "op": "mul", "value": 1.5 }
     ]
   },
   {
-    "id": "chaos_spring",
-    "name": "Chaos Spring",
-    "description": "20% chance of bouncing twice higher",
+    "id": "score_splash_add",
+    "description": "when scoring add +{value} to splash value",
     "price": 1,
     "effects": [
-      { "trigger": "on_bounce_physics", "chance": 0.2, "stat": "velocity_y", "op": "mul", "value": 2.0 }
+      { "trigger": "on_score", "stat": "splash_score", "op": "add", "value": 5.0 }
     ]
   },
   {
-    "id": "overdrive",
-    "name": "Overdrive",
-    "description": "For the next 5 throws, initial speed x 5",
+    "id": "score_splash_mult",
+    "description": "when scoring mult splash value by {value}",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_score", "stat": "splash_score", "op": "mul", "value": 2.0 }
+    ]
+  },
+  {
+    "id": "extra_item_spots",
+    "description": "add {value} additional item spots",
+    "price": 1,
+    "effects": [
+      { "trigger": "passive", "stat": "max_inventory_slots", "op": "add", "value": 2.0 }
+    ]
+  },
+  {
+    "id": "lucky_splash_bonus",
+    "description": "lucky bounces add {value} to splash value",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_lucky_bounce", "stat": "splash_score", "op": "add", "value": 3.0 }
+    ]
+  },
+  {
+    "id": "rebound_lucky_timer",
+    "description": "lucky bounces have {chance}% chance to happen for the next 5 launches (x remaining)",
     "uses_remaining": 5,
     "price": 1,
     "effects": [
-      { "trigger": "on_launch", "stat": "initial_speed", "op": "mul", "value": 5.0 }
+      { "trigger": "on_launch", "stat": "lucky_bounce_chance_buff", "op": "set", "value": 0.5 }
+    ]
+  },
+  {
+    "id": "rebound_lucky_freq",
+    "description": "lucky bounces happen {value}% more frequently",
+    "price": 1,
+    "effects": [
+      { "trigger": "passive", "stat": "lucky_bounce_chance", "op": "add", "value": 0.1 }
+    ]
+  },
+  {
+    "id": "eagle_ricochet",
+    "name": "Eagle ricochet",
+    "description": "{chance}% chance to bounce {value}% further",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_bounce_physics", "stat": "velocity_x", "op": "mul", "value": 1.5, "chance": 0.2 }
+    ]
+  },
+  {
+    "id": "holy_ricochet",
+    "name": "Holy ricochet",
+    "description": "{chance}% chance to bounce {value}% higher",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_bounce_physics", "stat": "velocity_y", "op": "mul", "value": 1.5, "chance": 0.2 }
+    ]
+  },
+  {
+    "id": "lucky_ricochet",
+    "name": "Lucky ricochet",
+    "description": "{chance}% chance to ignore friction on bounce",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_bounce_physics", "stat": "friction", "op": "set", "value": 1.0, "chance": 0.15 },
+    ]
+  },
+  {
+    "id": "quantic_dash",
+    "name": "Quantic dash",
+    "description": "{chance}% chance to dash y meters further on bounce",
+    "price": 1,
+    "effects": [
+      { "trigger": "on_bounce", "stat": "position_x", "op": "add", "value": 50.0, "chance": 0.1 }
     ]
   }
 ]
