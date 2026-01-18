@@ -56,6 +56,7 @@ func _ready() -> void:
 	EventBus.scoring_done.connect(func(_score): position = initial_position)
 
 func launch_pebble(launch_direction: Vector2, launch_force: float):
+	EventBus.start_launch.emit(self)
 	visible = true
 	pebble_shadow.visible = true
 	position = initial_position

@@ -4,14 +4,27 @@ class_name CardsManager
 signal selected_card(index)
 
 @export var card_prefab: PackedScene
+@export var money_label: Label
 var currently_selected: int = -1
-var displayed_item_ids: Array[String] = [] # Track what items are currently in the shop [cite: 8]
+var displayed_item_ids: Array[String] = []
+var temp_money = 0:
+	set(v):
+		temp_money = v
+		money_label.text = "%d$" % temp_money
+
 
 func _ready() -> void:
-	selected_card.connect(card_clicked) # [cite: 8]
-	EventBus.shop_requested.connect(shop_requested) # [cite: 8]
+	selected_card.connect(card_clicked)
+	EventBus.shop_requested.connect(shop_requested)
+	EventBus.spend_money.connect(spend_money)
 
-func shop_requested():
+
+func spend_money(_previous_money: int, new_money: int):
+	temp_money = new_money
+
+
+func shop_requested(money: int):
+	temp_money = money
 	for n in get_children():
 		n.queue_free()
 
@@ -31,17 +44,24 @@ func shop_requested():
 		card.init(selected_card, item_data)
 		displayed_item_ids.append(item_id)
 
+
 func card_clicked(index: int):
 	if currently_selected != -1:
-		(get_child(currently_selected) as ObjectCard).is_selected = false # [cite: 8]
+		(get_child(currently_selected) as ObjectCard).is_selected = false
 	currently_selected = index
-	(get_child(currently_selected) as ObjectCard).is_selected = true # [cite: 8]
+	(get_child(currently_selected) as ObjectCard).is_selected = true
 
-func continue_clicked():
-	# If a card was selected, equip it before closing the shop [cite: 8, 10]
+
+func buy_clicked():
 	if currently_selected != -1:
-		var chosen_id = displayed_item_ids[currently_selected]
-		ObjectManager.equip_item(chosen_id)
-		print("Equipped: ", chosen_id)
+		var target_card = get_child(currently_selected) as ObjectCard
+		if temp_money >= target_card.card_data["price"]:
+			var chosen_id = displayed_item_ids[currently_selected]
+			ObjectManager.equip_item(chosen_id)
+			target_card.set_selectable(false)
+			currently_selected = -1
+			EventBus.spend_money.emit(temp_money, temp_money - target_card.card_data["price"])
 
-	EventBus.shop_ended.emit() # [cite: 8]
+
+func close_clicked():
+	EventBus.shop_ended.emit()

@@ -9,24 +9,54 @@ var current_round = -1;
 var current_score = 0;
 var game_started = false;
 
+var goals =[8500, 7500, 6500, 5500, 4500, 3500, 2500]
+var gains = [5, 4, 3, 2, 1, 1, 1, -1]
+
+var money = 0
+
+func get_rank(scores: Array, player_score: int) -> int:
+	for i in range(scores.size()):
+		if player_score >= scores[i]:
+			return i
+
+	return scores.size()
+
+func compute_tournament_dict():
+	var tournament_dict = {
+		"day_index": current_day,
+		"round_index": current_round,
+		"player_score": current_score,
+		"goals" : goals,
+		"gains" : gains,
+		"rank_index": get_rank(goals, current_score)
+	}
+	return tournament_dict
+
+
 func _ready() -> void:
 	EventBus.new_launch.connect(received_launch)
 	EventBus.scoring_done.connect(scoring_done)
 	EventBus.launch_done.connect(launch_done)
 	EventBus.shop_ended.connect(launch_manager.request_launch)
 	EventBus.hide_tournament.connect(tournament_closed)
+	EventBus.spend_money.connect(spend_money)
+	EventBus.show_tournament.emit(compute_tournament_dict())
 
-	EventBus.show_tournament.emit(current_day, current_round, current_score)
+func spend_money(_previous_money:int, new_money:int):
+	money = new_money
 
-func tournament_closed(rank):
+func tournament_closed():
+	var current_rank = get_rank(goals, current_score)
 	if current_round == 2:
-		if rank == 7:
+		if current_rank == 7:
 			get_tree().reload_current_scene()
 			return
 
 		current_day += 1
 		current_round = 0
-		EventBus.shop_requested.emit()
+		money += gains[current_rank]
+
+		EventBus.shop_requested.emit(money)
 	else:
 		current_round += 1
 		launch_manager.request_launch()
@@ -40,7 +70,7 @@ func launch_done(distance:float, bounces:int):
 
 func scoring_done(round_score):
 	current_score += round_score;
-	EventBus.show_tournament.emit(current_day, current_round, current_score)
+	EventBus.show_tournament.emit(compute_tournament_dict())
 
 #TODO: make it so straight launches are better than up launches lol
 func received_launch(aim_percentage: float, force_percentage: float):
