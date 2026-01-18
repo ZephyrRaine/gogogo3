@@ -14,11 +14,12 @@ class_name Pebble
 @export var min_bounce_angle = -0.4
 @export var lucky_bounce_probability = 0.05
 
-@export_group("velocity")
-@export var velocity_per_launch_force_point = 1.0 #nvitesse (esthétique) par point de launch_force du lancer
-@export var lost_velocity_ratio_on_bounce = 0.9
+@export_group("Friction")
 @export var lost_angle_ratio_on_bounce = 0.98
 @export var lost_length_ratio_on_bounce = 0.8
+
+@export_group("velocity (no gameplay)")
+@export var velocity_per_launch_force_point : Curve #vitesse (esthétique) par point de launch_force du lancer
 
 @onready var og_water_height = water_height
 @onready var og_min_bounce_velocity = min_bounce_velocity
@@ -71,7 +72,7 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	ObjectManager.apply_trigger("on_launch", self)
 
 
-	velocity = launch_force * velocity_per_launch_force_point
+	velocity = velocity_per_launch_force_point.sample(launch_force)
 	max_bounce_length = launch_force * bounce_length_per_launch_force_point
 
 	distance = 0
@@ -80,9 +81,7 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	bounce_length = max_bounce_length
 
 	bad_angle_launch_lost = abs(angle_difference(bounce_angle, ideal_angle_launch))
-
-	print("angle launch ", bounce_angle)
-	print("angle launch lost ", bad_angle_launch_lost)
+	
 	start_bounce()
 
 func start_bounce():
@@ -111,10 +110,8 @@ func end_bounce():
 	# HANDLE BOUNCE PHYSICS
 	var is_lucky_bounce = randf() <= lucky_bounce_probability
 	if !is_lucky_bounce :
-		velocity *= lost_velocity_ratio_on_bounce - bad_angle_launch_lost
 		bounce_angle *= lost_angle_ratio_on_bounce
 		bounce_length *= lost_length_ratio_on_bounce - bad_angle_launch_lost
-		#print("angle: ", bounce_angle)
 	else:
 		print("LUCKY!")
 	EventBus.bounce.emit(is_lucky_bounce)
@@ -137,7 +134,8 @@ func _process(delta: float) -> void:
 	var q1 = p1.lerp(p2, juiced_t)
 	position = q0.lerp(q1, juiced_t)
 	pebble_shadow.position.x = position.x
-	t += delta * velocity * (max_bounce_length / bounce_length)
+	
+	t += delta * velocity
 
 	if (t >= 1.0 || position.y > water_height):
 		position.y = water_height
