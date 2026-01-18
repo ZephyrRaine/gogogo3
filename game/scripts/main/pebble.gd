@@ -104,8 +104,6 @@ func end_bounce():
 	# HANDLE BOUNCE COUNT LOGIC
 	var bounce_ctx = {"bounce_count_amount": 1} # Default is 1
 	ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
-	score_bounces += bounce_ctx["bounce_count_amount"]
-	bounce_index = bounce_index + 1
 
 	# HANDLE BOUNCE PHYSICS
 	var is_lucky_bounce = randf() <= lucky_bounce_probability
@@ -113,8 +111,13 @@ func end_bounce():
 		bounce_angle *= lost_angle_ratio_on_bounce
 		bounce_length *= lost_length_ratio_on_bounce - bad_angle_launch_lost
 	else:
-		print("LUCKY!")
+		ObjectManager.apply_trigger("on_lucky_bounce", bounce_ctx)
+
 	EventBus.bounce.emit(is_lucky_bounce)
+
+	score_bounces += bounce_ctx["bounce_count_amount"]
+	bounce_index = bounce_index + 1
+
 
 	if(bounce_angle > -0.1): bounce_angle = -0.1
 	start_bounce()
