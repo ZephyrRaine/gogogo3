@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cqp6ameybihib"]
+
+[ext_resource type="Texture2D" uid="uid://dp0jiyjkrowhj" path="res://assets/PNG/Animation/Arcanic rock sheet.png" id="1_ete5x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc24i"]
+atlas = ExtResource("1_ete5x")
+region = Rect2(0, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo1ks"]
+atlas = ExtResource("1_ete5x")
+region = Rect2(84, 0, 84, 84)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5774"]
+atlas = ExtResource("1_ete5x")
+region = Rect2(168, 0, 84, 84)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc24i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo1ks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5774")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
