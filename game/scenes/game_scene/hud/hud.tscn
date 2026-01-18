@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="3_bodji"]
 [ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="3_vl2ax"]
 [ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="4_5jsxa"]
-[ext_resource type="Script" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
+[ext_resource type="Script" uid="uid://cfd8050tpsw4v" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
 [ext_resource type="Script" uid="uid://c2kmh1vuqhs8w" path="res://scripts/main/hud/rebound_label.gd" id="4_s1vs5"]
 [ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="5_7d4ub"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
@@ -70,7 +70,7 @@ font_size = 54
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("in_game_score_label", "score_root", "score_total_label", "score_dist_label", "score_bounce_label", "shop", "tournament_view", "effects_manager")]
 script = ExtResource("1_fjoyr")
-in_game_score_label = NodePath("ScoreLabel/MarginContainer/cont_score/Container_Score/Label_SCORE")
+in_game_score_label = NodePath("InGameScoreLabel")
 score_root = NodePath("ScoreLabel")
 score_total_label = NodePath("ScoreLabel/MarginContainer/cont_score/Container_Score/Label_SCORE")
 score_dist_label = NodePath("ScoreLabel/cont_speed/Container_Dist/Label_Dist")
@@ -94,7 +94,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScoreLabel" type="HBoxContainer" parent="."]
-visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
