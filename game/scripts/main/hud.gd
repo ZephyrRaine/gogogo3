@@ -6,6 +6,8 @@ class_name HUD
 @export var shop: Control
 @export var tournament_view : TournamentView
 
+@export var effects_manager:EffectsManager
+
 var round_score
 var round_rank
 var pebble : Pebble
@@ -17,9 +19,11 @@ func _ready() -> void:
 	EventBus.show_tournament.connect(show_tournament_requested)
 	EventBus.start_launch.connect(show_pebble_score)
 	EventBus.launch_done.connect(hide_pebble_score)
+	
 
 func show_pebble_score(_pebble:Pebble):
 	pebble = _pebble;
+	effects_manager.pebble = pebble
 	in_game_score_label.visible = true;
 
 func hide_pebble_score(_a, _b):
