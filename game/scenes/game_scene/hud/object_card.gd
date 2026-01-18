@@ -33,22 +33,19 @@ func init(_clicked_signal, item_data: Dictionary):
 	if item_data.has("effects") and item_data["effects"].size() > 0:
 		var first_effect = item_data["effects"][0]
 
-		var display_value = str(first_effect["value"])
-
+		var flat_value = str(first_effect["value"])
 		# Optimization: If it's a multiplier (1.1), show it as a percentage (10)
-		if first_effect["op"] == "mul":
-			var percentage = (first_effect["value"] - 1.0) * 100
-			# If value is < 1 (like 0.9 for gravity), show the reduction
-			if first_effect["value"] < 1.0:
-				percentage = (1.0 - first_effect["value"]) * 100
-			display_value = str(abs(round(percentage)))
+		var percentage = (first_effect["value"] - 1.0) * 100
+		# If value is < 1 (like 0.9 for gravity), show the reduction
+		if first_effect["value"] < 1.0:
+			percentage = (1.0 - first_effect["value"]) * 100
+		var percentage_value = str(abs(round(percentage)))
 
-		if first_effect["op"] == "add":
-			if first_effect["value"] < 1.0:
-				var percentage = (first_effect["value"] - 1.0) * 100
-				display_value = str(abs(round(percentage)))
+		if (raw_description as String).contains("{value%}"):
+			raw_description = raw_description.replace("{value%}", percentage_value)
 
-		raw_description = raw_description.replace("{value}", display_value)
+		elif (raw_description as String).contains("{value}"):
+			raw_description = raw_description.replace("{value}", flat_value)
 
 		# 2. Parse the Chance (if it exists)
 		if first_effect.has("chance"):
