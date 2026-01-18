@@ -1,24 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx4tub02ajasy"]
+[gd_scene load_steps=5 format=3 uid="uid://dx4tub02ajasy"]
 
 [ext_resource type="Script" uid="uid://bvxym8kemxjn0" path="res://scripts/water_drop_particle.gd" id="1_ejn0c"]
 [ext_resource type="Texture2D" uid="uid://bjeqska02c75r" path="res://assets/PNG/WaterDrop.png" id="1_p4gkb"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i5wp6"]
-lifetime_randomness = 1.0
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(1, 366.465, 1)
-angle_min = -179.99998
-angle_max = 180.00002
-inherit_velocity_ratio = 3.19
-velocity_pivot = Vector3(100, 100, 100)
-direction = Vector3(0, -0.3, 0)
-spread = 12.795
-initial_velocity_min = 100.0
-initial_velocity_max = 120.0
-gravity = Vector3(0, 98, 0)
-scale_min = 0.19999999
-scale_max = 0.29999998
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u2s6h"]
 lifetime_randomness = 1.0
@@ -53,22 +36,12 @@ scale_max = 0.29999998
 [node name="WaterDropParticle" type="Node2D"]
 script = ExtResource("1_ejn0c")
 
-[node name="WaterDropParticle" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 40
-texture = ExtResource("1_p4gkb")
-lifetime = 5.0
-preprocess = 0.23
-speed_scale = 2.0
-explosiveness = 1.0
-fixed_fps = 60
-process_material = SubResource("ParticleProcessMaterial_i5wp6")
-
 [node name="WaterDropParticleLateralRight" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 20
 texture = ExtResource("1_p4gkb")
 lifetime = 5.0
+one_shot = true
 preprocess = 0.23
 speed_scale = 2.0
 explosiveness = 1.0
@@ -80,8 +53,12 @@ emitting = false
 amount = 20
 texture = ExtResource("1_p4gkb")
 lifetime = 5.0
+one_shot = true
 preprocess = 0.23
 speed_scale = 2.0
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_kxgd1")
+
+[connection signal="finished" from="WaterDropParticleLateralRight" to="." method="_on_water_drop_particle_lateral_right_finished"]
+[connection signal="finished" from="WaterDropParticleLateralLeft" to="." method="_on_water_drop_particle_lateral_left_finished"]

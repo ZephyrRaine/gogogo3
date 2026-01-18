@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn3i5hs7ssnp3"]
+
+[ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="1_hfxmr"]
+[ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="2_2rblj"]
+[ext_resource type="SpriteFrames" uid="uid://cqp6ameybihib" path="res://assets/PNG/Animation/ArcaniquePaddleRotate.tres" id="3_pog8k"]
+[ext_resource type="PackedScene" uid="uid://dx4tub02ajasy" path="res://scenes/game_scene/water_drop_particle.tscn" id="4_2rblj"]
+
+[sub_resource type="Curve" id="Curve_1qftq"]
+_data = [Vector2(0, 0), 0.0, 0.9, 0, 0, Vector2(0.2, 0.2), 1.0, 1.2, 0, 0, Vector2(1, 1), 1.2, 0.0, 0, 0]
+point_count = 3
+
+[node name="Pebble" type="Node2D"]
+script = ExtResource("1_hfxmr")
+initial_position = Vector2(-226, -22)
+water_height = 95.0
+juicy_velocity_curve = SubResource("Curve_1qftq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(189, -103)
+zoom = Vector2(1.5, 1.5)
+
+[node name="PebbleAnim" parent="." instance=ExtResource("2_2rblj")]
+scale = Vector2(1, 0.5)
+sprite_frames = ExtResource("3_pog8k")
+autoplay = "default"
+frame_progress = 0.62711096
+
+[node name="WaterDropParticle" parent="." instance=ExtResource("4_2rblj")]
