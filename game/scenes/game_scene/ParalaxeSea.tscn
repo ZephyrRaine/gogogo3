@@ -25,9 +25,10 @@
 [node name="Sea" type="Node2D"]
 
 [node name="Sky" type="Parallax2D" parent="."]
-scroll_scale = Vector2(0.2, 0.2)
+scroll_scale = Vector2(0.1, 1)
+scroll_offset = Vector2(0, 45)
 repeat_size = Vector2(1920, 0)
-autoscroll = Vector2(-15, 0)
+autoscroll = Vector2(-2, 0)
 repeat_times = 3
 
 [node name="BgSky" type="Sprite2D" parent="Sky"]
@@ -52,6 +53,7 @@ position = Vector2(2017, 223.5)
 texture = ExtResource("15_errmt")
 
 [node name="MaskarCliffs" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.8, 1)
 
 [node name="FMaskarCliffs" type="Sprite2D" parent="MaskarCliffs"]
 position = Vector2(2815, -51.5)
