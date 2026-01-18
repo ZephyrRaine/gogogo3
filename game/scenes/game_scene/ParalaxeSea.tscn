@@ -27,7 +27,7 @@ repeat_size = Vector2(1920, 0)
 repeat_times = 3
 
 [node name="BgSky" type="Sprite2D" parent="Sky"]
-position = Vector2(1737, -135)
+position = Vector2(1774, -135)
 texture = ExtResource("6_ah1jf")
 
 [node name="Sea" type="Parallax2D" parent="."]
@@ -49,63 +49,75 @@ texture = ExtResource("15_errmt")
 position = Vector2(2815, -51.5)
 texture = ExtResource("13_qir2g")
 
-[node name="CliffBoucle1" type="Sprite2D" parent="."]
-position = Vector2(3266, -34)
-texture = ExtResource("4_rjc1m")
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_offset = Vector2(0, -28.51)
+repeat_size = Vector2(1920, 0)
+repeat_times = 2
 
-[node name="CliffBoucle2" type="Sprite2D" parent="."]
-position = Vector2(4065, -32)
+[node name="CliffBoucle2" type="Sprite2D" parent="Parallax2D"]
 texture = ExtResource("5_1jf7c")
 
-[node name="WaterReflect1" type="Sprite2D" parent="."]
-position = Vector2(259, 28)
+[node name="CliffBoucle1" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(-799, -2)
+texture = ExtResource("4_rjc1m")
+
+[node name="Water reflect" type="Parallax2D" parent="."]
+repeat_size = Vector2(1401.615, 0)
+repeat_times = 5
+
+[node name="WaterReflect1" type="Sprite2D" parent="Water reflect"]
 texture = ExtResource("21_552y1")
 
-[node name="WaterReflect2" type="Sprite2D" parent="."]
-position = Vector2(678, 30)
+[node name="WaterReflect2" type="Sprite2D" parent="Water reflect"]
+position = Vector2(419, 2)
 texture = ExtResource("22_n8fin")
 
-[node name="WaterReflect3" type="Sprite2D" parent="."]
-position = Vector2(468, 32)
+[node name="WaterReflect3" type="Sprite2D" parent="Water reflect"]
+position = Vector2(209, 4)
 texture = ExtResource("23_4bmle")
 
-[node name="WaterReflectBig1" type="Sprite2D" parent="."]
-position = Vector2(408, 174)
-texture = ExtResource("24_x3mam")
-
-[node name="WaterReflectBig2" type="Sprite2D" parent="."]
-position = Vector2(1412, 125)
-texture = ExtResource("25_7cdti")
-
-[node name="WaterReflectBig3" type="Sprite2D" parent="."]
-position = Vector2(876, 204)
-texture = ExtResource("26_j7cu2")
-
-[node name="WaterReflectBig4" type="Sprite2D" parent="."]
-position = Vector2(915, 113)
-texture = ExtResource("27_wyssq")
-
-[node name="Parallax2D" type="Parallax2D" parent="."]
-scroll_scale = Vector2(1.5, 1)
-repeat_size = Vector2(860.015, 0)
+[node name="Water Reflect Big" type="Parallax2D" parent="."]
+scroll_offset = Vector2(-750, 153.66)
+repeat_size = Vector2(2000, 0)
 repeat_times = 4
 
-[node name="SpeedTrame1" type="Sprite2D" parent="Parallax2D"]
+[node name="WaterReflectBig1" type="Sprite2D" parent="Water Reflect Big"]
+position = Vector2(-507, 61)
+texture = ExtResource("24_x3mam")
+
+[node name="WaterReflectBig2" type="Sprite2D" parent="Water Reflect Big"]
+position = Vector2(497, 12)
+texture = ExtResource("25_7cdti")
+
+[node name="WaterReflectBig3" type="Sprite2D" parent="Water Reflect Big"]
+position = Vector2(-39, 91)
+texture = ExtResource("26_j7cu2")
+
+[node name="WaterReflectBig4" type="Sprite2D" parent="Water Reflect Big"]
+texture = ExtResource("27_wyssq")
+
+[node name="SpeedTrame" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.5, 1)
+scroll_offset = Vector2(0, -150)
+repeat_size = Vector2(860.015, 0)
+repeat_times = 3
+
+[node name="SpeedTrame1" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(692, -130)
 texture = ExtResource("16_yp6ev")
 
-[node name="SpeedTrame2" type="Sprite2D" parent="Parallax2D"]
+[node name="SpeedTrame2" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(529, -57)
 texture = ExtResource("17_tt2r4")
 
-[node name="SpeedTrame3" type="Sprite2D" parent="Parallax2D"]
+[node name="SpeedTrame3" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(301.93, -93.01)
 texture = ExtResource("18_32521")
 
-[node name="SpeedTrame4" type="Sprite2D" parent="Parallax2D"]
+[node name="SpeedTrame4" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(240, -132)
 texture = ExtResource("19_10o44")
 
-[node name="SpeedTrame5" type="Sprite2D" parent="Parallax2D"]
+[node name="SpeedTrame5" type="Sprite2D" parent="SpeedTrame"]
 position = Vector2(446, -161)
 texture = ExtResource("20_mt4c4")
