@@ -57,26 +57,6 @@ texture = ExtResource("4_rjc1m")
 position = Vector2(4065, -32)
 texture = ExtResource("5_1jf7c")
 
-[node name="SpeedTrame1" type="Sprite2D" parent="."]
-position = Vector2(692, -130)
-texture = ExtResource("16_yp6ev")
-
-[node name="SpeedTrame2" type="Sprite2D" parent="."]
-position = Vector2(529, -57)
-texture = ExtResource("17_tt2r4")
-
-[node name="SpeedTrame3" type="Sprite2D" parent="."]
-position = Vector2(301.93, -93.01)
-texture = ExtResource("18_32521")
-
-[node name="SpeedTrame4" type="Sprite2D" parent="."]
-position = Vector2(240, -132)
-texture = ExtResource("19_10o44")
-
-[node name="SpeedTrame5" type="Sprite2D" parent="."]
-position = Vector2(446, -161)
-texture = ExtResource("20_mt4c4")
-
 [node name="WaterReflect1" type="Sprite2D" parent="."]
 position = Vector2(259, 28)
 texture = ExtResource("21_552y1")
@@ -104,3 +84,28 @@ texture = ExtResource("26_j7cu2")
 [node name="WaterReflectBig4" type="Sprite2D" parent="."]
 position = Vector2(915, 113)
 texture = ExtResource("27_wyssq")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.5, 1)
+repeat_size = Vector2(860.015, 0)
+repeat_times = 4
+
+[node name="SpeedTrame1" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(692, -130)
+texture = ExtResource("16_yp6ev")
+
+[node name="SpeedTrame2" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(529, -57)
+texture = ExtResource("17_tt2r4")
+
+[node name="SpeedTrame3" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(301.93, -93.01)
+texture = ExtResource("18_32521")
+
+[node name="SpeedTrame4" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(240, -132)
+texture = ExtResource("19_10o44")
+
+[node name="SpeedTrame5" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(446, -161)
+texture = ExtResource("20_mt4c4")
