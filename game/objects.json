@@ -100,7 +100,7 @@
   },
   {
     "id": "rebound_lucky_timer",
-    "description": "lucky bounces have {chance}% chance to happen for the next 5 launches (x remaining)",
+    "description": "lucky bounces have {value%} of chance to happen for the next 5 launches (x remaining)",
     "uses_remaining": 5,
     "price": 1,
     "rarity": 1,
