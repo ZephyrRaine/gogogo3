@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://duhqhbgxmug7m"]
+[gd_scene load_steps=17 format=3 uid="uid://duhqhbgxmug7m"]
 
 [ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
 [ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
 [ext_resource type="Texture2D" uid="uid://bajycedvqv05r" path="res://assets/PNG/pebble_shadow.png" id="12_1qftq"]
 [ext_resource type="SpriteFrames" uid="uid://cqp6ameybihib" path="res://assets/PNG/Animation/ArcaniquePaddleRotate.tres" id="13_vvut4"]
+[ext_resource type="PackedScene" uid="uid://dx4tub02ajasy" path="res://scenes/game_scene/water_drop_particle.tscn" id="14_5prq0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
@@ -96,3 +97,5 @@ scale = Vector2(1, 0.5)
 sprite_frames = ExtResource("13_vvut4")
 autoplay = "default"
 frame_progress = 0.0
+
+[node name="WaterDropParticle" parent="Pebble" instance=ExtResource("14_5prq0")]

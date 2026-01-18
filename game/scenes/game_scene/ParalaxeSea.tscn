@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bs48nvkckyw6j"]
+[gd_scene load_steps=22 format=3 uid="uid://bs48nvkckyw6j"]
 
 [ext_resource type="Texture2D" uid="uid://dlevf2hyuf10r" path="res://assets/Bg_boucle/BG_clouds.png" id="2_55l2q"]
 [ext_resource type="Texture2D" uid="uid://d0hljdfwhveh6" path="res://assets/Bg_boucle/cliff_boucle_1.png" id="4_rjc1m"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://c7d2lwuoqy73n" path="res://assets/BG_lancer/BG_1_export.png" id="19_o8qqe"]
 [ext_resource type="Texture2D" uid="uid://b838dt5f2q15c" path="res://assets/Bg_boucle/speed_trame_5.png" id="20_mt4c4"]
 [ext_resource type="Texture2D" uid="uid://b23c40576p86n" path="res://assets/Bg_boucle/water_reflect_1.png" id="21_552y1"]
+[ext_resource type="PackedScene" uid="uid://dx4tub02ajasy" path="res://scenes/game_scene/water_drop_particle.tscn" id="21_i5wp6"]
 [ext_resource type="Texture2D" uid="uid://dlleu1xcjxnv6" path="res://assets/Bg_boucle/water_reflect_2.png" id="22_n8fin"]
 [ext_resource type="Texture2D" uid="uid://cbad1xomh61u0" path="res://assets/Bg_boucle/water_reflect_3.png" id="23_4bmle"]
 [ext_resource type="Texture2D" uid="uid://qoadxv81da6b" path="res://assets/Bg_boucle/water_reflect_big_1.png" id="24_x3mam"]
@@ -132,3 +133,5 @@ texture = ExtResource("20_mt4c4")
 [node name="Bg1Export" type="Sprite2D" parent="."]
 position = Vector2(-207, 5)
 texture = ExtResource("19_o8qqe")
+
+[node name="WaterDropParticle" parent="." instance=ExtResource("21_i5wp6")]
