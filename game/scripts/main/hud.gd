@@ -19,7 +19,7 @@ func _ready() -> void:
 	EventBus.show_tournament.connect(show_tournament_requested)
 	EventBus.start_launch.connect(show_pebble_score)
 	EventBus.launch_done.connect(hide_pebble_score)
-	
+
 
 func show_pebble_score(_pebble:Pebble):
 	pebble = _pebble;
@@ -47,20 +47,24 @@ func _process(_delta: float) -> void:
 
 func display_score(distance: float, bounces: int):
 	# Create a context object to calculate the final numbers
-	var score_ctx = {"score_distance": distance, "final_score": 0}
+	var score_ctx = {"speed_score": distance, "splash_score": bounces, "final_score": 0}
 
 	# Apply modifiers (like "Headstart")
 	ObjectManager.apply_trigger("on_score", score_ctx)
 
-	var final_dist = score_ctx["score_distance"]
+	var final_speed_score = score_ctx["speed_score"]
+	var final_splash_score = score_ctx["splash_score"]
 
 	# Apply the Permanent Multiplier (Bullseye Bonus)
-	var multiplier = (bounces + 1) * ObjectManager.permanent_stats["final_score_multiplier"]
+	var multiplier = (final_splash_score) * ObjectManager.permanent_stats["final_score_multiplier"]
 
 	score_label.visible = true
 	# Update text logic to use modified values
-	round_score = final_dist * multiplier
-	score_label.text = "\n%d x %.1f = %d" % [final_dist, multiplier, round_score]
+	round_score = final_speed_score * multiplier
+	score_ctx["final_score"] = round_score
+	ObjectManager.apply_trigger("on_score", score_ctx)
+	round_score = score_ctx["final_score"]
+	score_label.text = "\n%d x %.1f = %d" % [final_speed_score, final_splash_score, round_score]
 
 
 func display_shop(_m):
