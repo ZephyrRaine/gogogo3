@@ -1,14 +1,17 @@
 extends CanvasLayer
 class_name HUD
 
-@export var score_label: Label
-@export var in_game_score_label: Label
+@export var in_game_score_label:Label
+@export var score_root:Control
+@export var score_total_label: Label
+@export var score_dist_label : Label
+@export var score_bounce_label : Label
 @export var shop: Control
 @export var tournament_view : TournamentView
 
 @export var effects_manager:EffectsManager
 
-var round_score
+var round_score:int
 var round_rank
 var pebble : Pebble
 
@@ -24,15 +27,15 @@ func _ready() -> void:
 func show_pebble_score(_pebble:Pebble):
 	pebble = _pebble;
 	effects_manager.pebble = pebble
-	in_game_score_label.visible = true;
+	# in_game_score_label.visible = true;
 
 func hide_pebble_score(_a, _b):
 	pebble = null
-	in_game_score_label.visible = false;
+#	in_game_score_label.visible = false;
 
 func _input(event: InputEvent) -> void:
-	if score_label.visible && event.is_action_pressed("interact"):
-		score_label.visible = false
+	if score_root.visible && event.is_action_pressed("interact"):
+		score_root.visible = false
 		await get_tree().create_timer(0.25).timeout
 		EventBus.scoring_done.emit(round_score)
 
@@ -42,8 +45,9 @@ func _input(event: InputEvent) -> void:
 		EventBus.hide_tournament.emit()
 
 func _process(_delta: float) -> void:
-	if pebble && in_game_score_label.visible:
-		in_game_score_label.text = "%d" % [(pebble.position.x - pebble.initial_position.x) * pebble.score_bounces+1]
+	pass
+#	if pebble && in_game_score_label.visible:
+#		in_game_score_label.text = "%d" % [(pebble.position.x - pebble.initial_position.x) * pebble.score_bounces+1]
 
 func display_score(distance: float, bounces: int):
 	# Create a context object to calculate the final numbers
@@ -58,13 +62,16 @@ func display_score(distance: float, bounces: int):
 	# Apply the Permanent Multiplier (Bullseye Bonus)
 	var multiplier = (final_splash_score) * ObjectManager.permanent_stats["final_score_multiplier"]
 
-	score_label.visible = true
+	score_root.visible = true
 	# Update text logic to use modified values
 	round_score = final_speed_score * multiplier
 	score_ctx["final_score"] = round_score
 	ObjectManager.apply_trigger("on_score", score_ctx)
 	round_score = score_ctx["final_score"]
-	score_label.text = "\n%d x %.1f = %d" % [final_speed_score, final_splash_score, round_score]
+	print(round_score)
+	score_total_label.text = "%d" % [round_score]
+	score_bounce_label.text = "%d" % [multiplier]
+	score_dist_label.text = "%d" % [final_speed_score]
 
 
 func display_shop(_m):
