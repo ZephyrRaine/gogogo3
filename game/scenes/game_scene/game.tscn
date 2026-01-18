@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://duhqhbgxmug7m"]
+[gd_scene load_steps=18 format=3 uid="uid://duhqhbgxmug7m"]
 
 [ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_700et"]
 [ext_resource type="Texture2D" uid="uid://bokfd8uy6s6b4" path="res://assets/aim_bg.png" id="1_cw6cr"]
@@ -21,6 +21,11 @@ size = Vector2(1000, 4)
 [sub_resource type="Curve" id="Curve_1qftq"]
 _data = [Vector2(0, 0), 0.0, 0.9, 0, 0, Vector2(0.2, 0.2), 1.0, 1.2, 0, 0, Vector2(1, 1), 1.2, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="Curve" id="Curve_5prq0"]
+_limits = [0.0, 10.0, 0.0, 60.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(50, 10), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Game" type="Node2D"]
 
@@ -87,6 +92,7 @@ initial_position = Vector2(-226, -22)
 water_height = 95.0
 pebble_shadow = NodePath("../PebbleShadow")
 juicy_velocity_curve = SubResource("Curve_1qftq")
+velocity_per_launch_force_point = SubResource("Curve_5prq0")
 
 [node name="Camera2D" type="Camera2D" parent="Pebble"]
 position = Vector2(189, -103)

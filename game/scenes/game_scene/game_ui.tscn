@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://clxs5gwisal5m"]
+[gd_scene load_steps=24 format=3 uid="uid://clxs5gwisal5m"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_3re04"]
+[ext_resource type="AudioStream" uid="uid://cw3noacuixyaf" path="res://audio/main.ogg" id="5_rkfhe"]
 [ext_resource type="PackedScene" uid="uid://duhqhbgxmug7m" path="res://scenes/game_scene/game.tscn" id="5_y85d6"]
 [ext_resource type="PackedScene" uid="uid://dh1ln5wlm85dr" path="res://scenes/game_scene/hud/hud.tscn" id="6_y85d6"]
 [ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="7_3re04"]
@@ -18,15 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="12_rkfhe"]
 [ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="13_g2ndc"]
 [ext_resource type="Texture2D" uid="uid://xx2vbxuvuim4" path="res://assets/UI/Score_screen/splash.png" id="14_0v86b"]
-[ext_resource type="Texture2D" uid="uid://picviqo0vqqg" path="res://assets/power_minigame/arrow_frame.png" id="19_ck3wh"]
-[ext_resource type="Texture2D" uid="uid://dlkyq7vo7oxv6" path="res://assets/power_minigame/power_1.png" id="20_p0l08"]
-[ext_resource type="Texture2D" uid="uid://buuhaxkwj43sf" path="res://assets/power_minigame/power_2.png" id="21_oo80c"]
-[ext_resource type="Texture2D" uid="uid://dg0dwyv2mbua8" path="res://assets/power_minigame/power_3.png" id="22_uxa2e"]
-[ext_resource type="Texture2D" uid="uid://r7py0d57ker8" path="res://assets/power_minigame/power_4.png" id="23_is1bs"]
-[ext_resource type="Texture2D" uid="uid://dsufgoe1mdn1d" path="res://assets/power_minigame/power_5.png" id="24_tdibn"]
-[ext_resource type="Texture2D" uid="uid://b3n3kpoua4fsj" path="res://assets/power_minigame/power_6.png" id="25_pbvv0"]
-[ext_resource type="Texture2D" uid="uid://6cr6heahfk6m" path="res://assets/power_minigame/power_7.png" id="26_lsqul"]
-[ext_resource type="Texture2D" uid="uid://b1kt2iv4jtu0f" path="res://assets/power_minigame/power_max.png" id="27_lduvt"]
+[ext_resource type="Script" uid="uid://cvcp35lt3gwr7" path="res://scenes/game_scene/sound_effects_manager.gd" id="20_g2ndc"]
+[ext_resource type="AudioStream" uid="uid://b8cvri2v85ms6" path="res://audio/bounce.ogg" id="21_0v86b"]
+[ext_resource type="AudioStream" uid="uid://b5djnl8hphth8" path="res://audio/bounce_lucky.ogg" id="22_ulq3g"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_gpor5"]
 
 [node name="GameUI" type="Control"]
 layout_mode = 3
@@ -44,6 +41,7 @@ pause_menu_packed = ExtResource("2_7aihr")
 focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("3_3re04")]
+stream = ExtResource("5_rkfhe")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -66,98 +64,73 @@ script = ExtResource("11_ulq3g")
 position = Vector2(746, 397)
 
 [node name="CursorFrame" type="Sprite2D" parent="ViewportContainer"]
+visible = false
 position = Vector2(495.74207, 375.8973)
 scale = Vector2(1.584477, 1.584477)
 texture = ExtResource("8_rkfhe")
 
 [node name="GreenArrow" type="Sprite2D" parent="ViewportContainer"]
+visible = false
 position = Vector2(495.74207, 375.8973)
 scale = Vector2(1.584477, 1.584477)
 texture = ExtResource("9_g2ndc")
 
 [node name="BalckArrow" type="Sprite2D" parent="ViewportContainer"]
+visible = false
 position = Vector2(495.74207, 375.8973)
 scale = Vector2(1.584477, 1.584477)
 texture = ExtResource("7_i7m4m")
 
 [node name="KnotOnArrow" type="Sprite2D" parent="ViewportContainer"]
+visible = false
 position = Vector2(495.74207, 375.8973)
 scale = Vector2(1.584477, 1.584477)
 texture = ExtResource("10_0v86b")
 
 [node name="MaskScore" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("7_3re04")
 
 [node name="MaskSpeed" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("8_ascoc")
 
 [node name="MaskSplash" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("9_wr4n6")
 
 [node name="MaskX" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("10_ukb12")
 
 [node name="MaskEgalScore" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("11_i7m4m")
 
 [node name="Score" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("12_rkfhe")
 
 [node name="Speed" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("13_g2ndc")
 
 [node name="Splash" type="Sprite2D" parent="."]
-position = Vector2(849, 259.5)
+visible = false
+position = Vector2(847, 258.5)
 texture = ExtResource("14_0v86b")
 
-[node name="ArrowFrame" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("19_ck3wh")
+[node name="SoundEffects" type="Node2D" parent="."]
+script = ExtResource("20_g2ndc")
+bounce_sfx = ExtResource("21_0v86b")
+lucky_bounce_sfx = ExtResource("22_ulq3g")
 
-[node name="Power1" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("20_p0l08")
-
-[node name="Power2" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("21_oo80c")
-
-[node name="Power3" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("22_uxa2e")
-
-[node name="Power4" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("23_is1bs")
-
-[node name="Power5" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("24_tdibn")
-
-[node name="Power6" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("25_pbvv0")
-
-[node name="Power7" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("26_lsqul")
-
-[node name="PowerMax" type="Sprite2D" parent="."]
-position = Vector2(512.27734, 376.53925)
-scale = Vector2(1.8738071, 1.8738071)
-texture = ExtResource("27_lduvt")
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = SubResource("AudioStreamPolyphonic_gpor5")
