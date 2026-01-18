@@ -12,6 +12,7 @@ class_name Pebble
 @export var bounce_length_per_launch_force_point = 800 #taille d'un rebond de lancer par point de launch_force du lancer (équilibrable)
 @export var min_bounce_velocity = 0.5
 @export var min_bounce_angle = -0.4
+@export var lucky_bounce_probability = 0.05
 
 @export_group("velocity")
 @export var velocity_per_launch_force_point = 1.0 #nvitesse (esthétique) par point de launch_force du lancer
@@ -21,6 +22,7 @@ class_name Pebble
 
 @onready var og_water_height = water_height
 @onready var og_min_bounce_velocity = min_bounce_velocity
+@onready var og_lucky_bounce_probability = lucky_bounce_probability
 
 var height_that_ends = 65.0
 var trajectory_that_ends = 0.4
@@ -41,7 +43,7 @@ var score_distance
 
 var p0 : Vector2
 var p1 : Vector2
-var p2 : Vector2 
+var p2 : Vector2
 var t = 0.0
 
 var current_bounce_velocity
@@ -61,22 +63,23 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	# RESET STATS TO DEFAULTS FIRST (Important so buffs don't stack infinitely every retry)
 	score_bounces = 0
 	score_distance = 0.0
+	lucky_bounce_probability = og_lucky_bounce_probability
 
 	# APPLY PASSIVE & LAUNCH EFFECTS
 	ObjectManager.apply_trigger("passive", self)
 	ObjectManager.apply_trigger("on_launch", self)
 
-	
+
 	velocity = launch_force * velocity_per_launch_force_point
 	max_bounce_length = launch_force * bounce_length_per_launch_force_point
-	
+
 	distance = 0
 	bounce_index = 0
 	bounce_angle = launch_direction.angle()
 	bounce_length = max_bounce_length
-	
+
 	bad_angle_launch_lost = abs(angle_difference(bounce_angle, ideal_angle_launch))
-	
+
 	print("angle launch ", bounce_angle)
 	print("angle launch lost ", bad_angle_launch_lost)
 	start_bounce()
@@ -85,11 +88,11 @@ func start_bounce():
 	p0 = position
 	p2.x = p0.x + bounce_length
 	p2.y = water_height
-	
+
 	p1.x = (p0.x + p2.x) * 0.5
 	p1.y = water_height + (p2.x - p0.x) * tan(bounce_angle)
 	t = 0.0
-		
+
 	if (bounce_index > 0
 	&& (p1.y > height_that_ends || -((p2.x - p0.x) * tan(bounce_angle)) / (p2.x - p0.x) > trajectory_that_ends)):
 		launch_over()
@@ -103,16 +106,18 @@ func end_bounce():
 	ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
 	score_bounces += bounce_ctx["bounce_count_amount"]
 	bounce_index = bounce_index + 1
-	
-	# HANDLE BOUNCE PHYSICS 
-	velocity *= lost_velocity_ratio_on_bounce - bad_angle_launch_lost
-	var physics_ctx = {"velocity_y": velocity}
-	ObjectManager.apply_trigger("on_bounce_physics", physics_ctx)
-	velocity = physics_ctx["velocity_y"]
-	
-	bounce_angle *= lost_angle_ratio_on_bounce
-	bounce_length *= lost_length_ratio_on_bounce - bad_angle_launch_lost
-	#print("angle: ", bounce_angle)
+
+	# HANDLE BOUNCE PHYSICS
+	var is_lucky_bounce = randf() <= lucky_bounce_probability
+	if !is_lucky_bounce :
+		velocity *= lost_velocity_ratio_on_bounce - bad_angle_launch_lost
+		bounce_angle *= lost_angle_ratio_on_bounce
+		bounce_length *= lost_length_ratio_on_bounce - bad_angle_launch_lost
+		#print("angle: ", bounce_angle)
+	else:
+		print("LUCKY!")
+	EventBus.bounce.emit(is_lucky_bounce)
+
 	if(bounce_angle > -0.1): bounce_angle = -0.1
 	start_bounce()
 
@@ -120,19 +125,19 @@ func launch_over():
 	visible = false
 	pebble_shadow.visible = false
 	EventBus.launch_done.emit(score_distance, score_bounces)
-	
+
 
 func _process(delta: float) -> void:
 	if !visible:
 		return
-	
+
 	var juiced_t = juicy_velocity_curve.sample(t)
 	var q0 = p0.lerp(p1, juiced_t)
 	var q1 = p1.lerp(p2, juiced_t)
 	position = q0.lerp(q1, juiced_t)
 	pebble_shadow.position.x = position.x
 	t += delta * velocity * (max_bounce_length / bounce_length)
-		
-	if (t >= 1.0 || position.y > water_height): 
+
+	if (t >= 1.0 || position.y > water_height):
 		position.y = water_height
 		end_bounce()

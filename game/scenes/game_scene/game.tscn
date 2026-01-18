@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://c486e1smalas7" path="res://scripts/main/aim_indicator.gd" id="2_700et"]
 [ext_resource type="Texture2D" uid="uid://cq15w3ueetero" path="res://assets/aim_target.png" id="5_o347i"]
 [ext_resource type="Script" uid="uid://cs5uulwlyh5x7" path="res://scripts/main/game_manager.gd" id="6_7ulqd"]
-[ext_resource type="Script" uid="uid://de3s64g4d4bxi" path="res://scripts/main/force_indicator.gd" id="7_tr8b4"]
+[ext_resource type="Script" path="res://scripts/main/force_indicator.gd" id="7_tr8b4"]
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="7_wedpv"]
 [ext_resource type="Texture2D" uid="uid://bcw4ct7h86aqq" path="res://assets/aim_force.png" id="8_1qftq"]
-[ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
+[ext_resource type="PackedScene" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
 [ext_resource type="Texture2D" uid="uid://bajycedvqv05r" path="res://assets/PNG/pebble_shadow.png" id="12_1qftq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
@@ -28,8 +28,9 @@ point_count = 3
 script = ExtResource("1_700et")
 current_launching_phase = 1
 aim_indicator = NodePath("AimIndicator")
-aim_ratio_speed = 0.75
+aim_ratio_speed = 2.0
 aim_ratio_target = 0.5
+bypass_forceTest = false
 force_indicator = NodePath("ForceIndicator")
 force_ratio_speed = 1.5
 
