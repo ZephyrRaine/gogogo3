@@ -65,6 +65,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 
+	if event.is_action_pressed("debug_speedup"):
+		Engine.time_scale = 5;
+	if event.is_action_released("debug_speedup"):
+		Engine.time_scale = 1;
+
 func launch_done(distance:float, bounces:int):
 	EventBus.scoring_show.emit(distance, bounces)
 

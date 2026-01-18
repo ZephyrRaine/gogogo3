@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgorylscgpn36"]
+
+[ext_resource type="Texture2D" uid="uid://picviqo0vqqg" path="res://assets/power_minigame/arrow_frame.png" id="1_kjkxk"]
+[ext_resource type="Texture2D" uid="uid://dlkyq7vo7oxv6" path="res://assets/power_minigame/power_1.png" id="2_372mf"]
+[ext_resource type="Texture2D" uid="uid://buuhaxkwj43sf" path="res://assets/power_minigame/power_2.png" id="3_ryynp"]
+[ext_resource type="Texture2D" uid="uid://dg0dwyv2mbua8" path="res://assets/power_minigame/power_3.png" id="4_nkdqd"]
+[ext_resource type="Texture2D" uid="uid://r7py0d57ker8" path="res://assets/power_minigame/power_4.png" id="5_r805g"]
+[ext_resource type="Texture2D" uid="uid://dsufgoe1mdn1d" path="res://assets/power_minigame/power_5.png" id="6_p367v"]
+[ext_resource type="Texture2D" uid="uid://b3n3kpoua4fsj" path="res://assets/power_minigame/power_6.png" id="7_58ho4"]
+[ext_resource type="Texture2D" uid="uid://6cr6heahfk6m" path="res://assets/power_minigame/power_7.png" id="8_v0b7w"]
+[ext_resource type="Texture2D" uid="uid://b1kt2iv4jtu0f" path="res://assets/power_minigame/power_max.png" id="9_yf3jv"]
+
+[node name="AimForce" type="Node2D"]
+
+[node name="ArrowFrame" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("1_kjkxk")
+
+[node name="Power1" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("2_372mf")
+
+[node name="Power2" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("3_ryynp")
+
+[node name="Power3" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("4_nkdqd")
+
+[node name="Power4" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("5_r805g")
+
+[node name="Power5" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("6_p367v")
+
+[node name="Power6" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("7_58ho4")
+
+[node name="Power7" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("8_v0b7w")
+
+[node name="PowerMax" type="Sprite2D" parent="."]
+position = Vector2(512.27734, 376.53925)
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("9_yf3jv")

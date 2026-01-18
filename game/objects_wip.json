@@ -1,0 +1,55 @@
+[
+
+  {
+    "id": "tournament_bonus_round",
+    "description": "add a bonus round for your tournaments",
+    "effects": [
+      { "trigger": "on_tournament_start", "stat": "total_rounds", "op": "add", "value": 1.0 }
+    ]
+  },
+  {
+    "id": "last_round_lucky_chance",
+    "description": "during your last round of a tournament, lucky bounces happen {value}% more frequently",
+    "effects": [
+      { "trigger": "on_bounce_last_round", "stat": "lucky_bounce_chance", "op": "add", "value": 0.2 }
+    ]
+  },
+  {
+    "id": "last_round_double_score",
+    "description": "your final score is doubled during your last round of a tournament",
+    "effects": [
+      { "trigger": "on_score_last_round", "stat": "final_score", "op": "mul", "value": 2.0 }
+    ]
+  },
+  {
+    "id": "rebound_perm_splash",
+    "description": "each lucky bounces gives +{value} to final splash value (permanent)",
+    "effects": [
+      { "trigger": "on_lucky_bounce", "stat": "permanent_splash_bonus", "op": "add", "value": 1.0, "is_permanent": true }
+    ]
+  },
+  {
+    "id": "golden_ricochet",
+    "name": "Golden ricochet",
+    "description": "{chance}% chance to gain y gold on bounce",
+    "effects": [
+      { "trigger": "on_bounce", "stat": "gold_earned", "op": "add", "value": 10.0, "chance": 0.1 }
+    ]
+  }
+{
+  "id": "flaming_boost",
+  "name": "Flamming boost",
+  "description": "{chance}% chance to boost a special bounce",
+  "effects": [
+    { "trigger": "on_special_bounce", "stat": "velocity_all", "op": "mul", "value": 2.0, "chance": 0.25 }
+  ]
+},
+{
+  "id": "cloning_ricochet",
+  "name": "Cloning ricochet",
+  "description": "{chance}% chance to duplicate a special bounce",
+  "effects": [
+    { "trigger": "on_special_bounce", "stat": "bounce_count", "op": "add", "value": 1.0, "chance": 0.2 }
+  ]
+}
+]
