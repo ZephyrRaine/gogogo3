@@ -15,7 +15,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _unsplashParticle(distance : float, bounces : float) ->void :
+func _unsplashParticle(_distance: float, _bounces: float) ->void :
 
 	
 	LeftDrop.emitting = false;
@@ -23,7 +23,7 @@ func _unsplashParticle(distance : float, bounces : float) ->void :
 	RightDrop.emitting = false;
 	pass
 
-func _splashParticle(lucky : bool) -> void:
+func _splashParticle(_lucky : bool) -> void:
 
 	LeftDrop.emitting = true;
 	LeftDrop.restart(false);
