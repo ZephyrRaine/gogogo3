@@ -105,10 +105,21 @@ func end_bounce():
 	ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
 
 	# HANDLE BOUNCE PHYSICS
+
+	#On passe un dictionaire "contexte" avec toutes les variables qui nous intéressent sur le trigger
+	var bounce_physics_ctx = {"lost_length_ratio_on_bounce": lost_length_ratio_on_bounce}
+	#L'object manager va appeler tous les objets qui ont le trigger en question,
+	# vont regarder si l'objet passé en param (en l'occurence le dictionnaire) voir s'il a la stat en question,
+	# et appliquer l'opération définie, s'il y a une chance de proc ça le fait que si le lancer de dé est réussi
+	# bien vérifier le nom du trigger et le nom de la stat dans objects.json
+	#{ "trigger": "on_bounce_physics", "stat": "lost_length_ratio_on_bounce", "op": "mul", "value": 0.5, "chance": 0.2 }
+	bounce_physics_ctx = ObjectManager.apply_trigger("on_bounce_physics", bounce_physics_ctx)
+
 	var is_lucky_bounce = randf() <= lucky_bounce_probability
 	if !is_lucky_bounce :
 		bounce_angle *= lost_angle_ratio_on_bounce
-		bounce_length *= lost_length_ratio_on_bounce - bad_angle_launch_lost
+		#on récupère la variable dans le dictionnaire, si on n'a pas l'item ou si la proba a pas proc c'est la même qu'on a mise
+		bounce_length *= bounce_physics_ctx["lost_length_ratio_on_bounce"] - bad_angle_launch_lost
 	else:
 		ObjectManager.apply_trigger("on_lucky_bounce", bounce_ctx)
 
