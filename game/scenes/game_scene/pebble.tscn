@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn3i5hs7ssnp3"]
+[gd_scene load_steps=7 format=3 uid="uid://b7jqxky8xsaah"]
 
 [ext_resource type="Script" uid="uid://dfd2uiaetpmg0" path="res://scripts/main/pebble.gd" id="1_hfxmr"]
 [ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="2_2rblj"]
 [ext_resource type="SpriteFrames" uid="uid://cqp6ameybihib" path="res://assets/PNG/Animation/ArcaniquePaddleRotate.tres" id="3_pog8k"]
-[ext_resource type="PackedScene" uid="uid://dx4tub02ajasy" path="res://scenes/game_scene/water_drop_particle.tscn" id="4_2rblj"]
-[ext_resource type="PackedScene" uid="uid://br22rn30mj8ve" path="res://scenes/game_scene/speed_trail.tscn" id="5_pog8k"]
+[ext_resource type="PackedScene" path="res://scenes/game_scene/water_drop_particle.tscn" id="4_2rblj"]
+[ext_resource type="PackedScene" uid="uid://dd4oky11i74lb" path="res://scenes/game_scene/speed_trail.tscn" id="5_pog8k"]
 
 [sub_resource type="Curve" id="Curve_1qftq"]
 _data = [Vector2(0, 0), 0.0, 0.9, 0, 0, Vector2(0.2, 0.2), 1.0, 1.2, 0, 0, Vector2(1, 1), 1.2, 0.0, 0, 0]
@@ -22,7 +22,6 @@ zoom = Vector2(1.5, 1.5)
 [node name="SpeedTrail" parent="." instance=ExtResource("5_pog8k")]
 
 [node name="PebbleAnim" parent="." instance=ExtResource("2_2rblj")]
-position = Vector2(0, 1)
 scale = Vector2(1, 0.5)
 sprite_frames = ExtResource("3_pog8k")
 autoplay = "default"

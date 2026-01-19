@@ -1,27 +1,49 @@
-[gd_scene load_steps=24 format=3 uid="uid://clxs5gwisal5m"]
+[gd_scene load_steps=27 format=3 uid="uid://clxs5gwisal5m"]
 
 [ext_resource type="Script" uid="uid://cyh0d64pfygbl" path="res://addons/maaacks_game_template/base/nodes/utilities/pause_menu_controller.gd" id="1_bmy5n"]
 [ext_resource type="PackedScene" uid="uid://wm2nmhcpk5qp" path="res://scenes/windows/pause_menu_layer.tscn" id="2_7aihr"]
 [ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.tscn" id="3_3re04"]
 [ext_resource type="AudioStream" uid="uid://cw3noacuixyaf" path="res://audio/main.ogg" id="5_rkfhe"]
 [ext_resource type="PackedScene" uid="uid://duhqhbgxmug7m" path="res://scenes/game_scene/game.tscn" id="5_y85d6"]
+[ext_resource type="AudioStream" uid="uid://cvvuk4v7ebnql" path="res://audio/shop.ogg" id="6_g2ndc"]
 [ext_resource type="PackedScene" uid="uid://dh1ln5wlm85dr" path="res://scenes/game_scene/hud/hud.tscn" id="6_y85d6"]
+[ext_resource type="Script" uid="uid://dm210ie1ynk67" path="res://addons/maaacks_game_template/base/nodes/music_players/background_music_player.gd" id="7_0v86b"]
 [ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="7_3re04"]
-[ext_resource type="Texture2D" uid="uid://b7dmpgj7o1he3" path="res://assets/aim_minigame/balck_arrow.png" id="7_i7m4m"]
+[ext_resource type="AudioStream" uid="uid://c3l8jk28g0e51" path="res://audio/silence.ogg" id="7_ulq3g"]
 [ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="8_ascoc"]
-[ext_resource type="Texture2D" uid="uid://bkgiaxtt1dl88" path="res://assets/aim_minigame/cursor_frame.png" id="8_rkfhe"]
-[ext_resource type="Texture2D" uid="uid://mior7jdf02p6" path="res://assets/aim_minigame/green_arrow.png" id="9_g2ndc"]
 [ext_resource type="Texture2D" uid="uid://ba2pbu4hs4oku" path="res://assets/UI/Score_screen/mask_splash.png" id="9_wr4n6"]
-[ext_resource type="Texture2D" uid="uid://f1dl2eii0t51" path="res://assets/aim_minigame/knot_on_arrow.png" id="10_0v86b"]
 [ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="10_ukb12"]
 [ext_resource type="Texture2D" uid="uid://dqw5saf0b0ntr" path="res://assets/UI/Score_screen/mask_egal_score.png" id="11_i7m4m"]
 [ext_resource type="Script" uid="uid://bnhmjy582mlax" path="res://scenes/game_scene/configurable_sub_viewport.gd" id="11_ulq3g"]
 [ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="12_rkfhe"]
 [ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="13_g2ndc"]
 [ext_resource type="Texture2D" uid="uid://xx2vbxuvuim4" path="res://assets/UI/Score_screen/splash.png" id="14_0v86b"]
+[ext_resource type="AudioStream" uid="uid://b8ffdt5f0jspr" path="res://audio/bounce_last.ogg" id="19_rkfhe"]
 [ext_resource type="Script" uid="uid://cvcp35lt3gwr7" path="res://scenes/game_scene/sound_effects_manager.gd" id="20_g2ndc"]
 [ext_resource type="AudioStream" uid="uid://b8cvri2v85ms6" path="res://audio/bounce.ogg" id="21_0v86b"]
 [ext_resource type="AudioStream" uid="uid://b5djnl8hphth8" path="res://audio/bounce_lucky.ogg" id="22_ulq3g"]
+[ext_resource type="AudioStream" uid="uid://dhpfustboi02j" path="res://audio/click1.ogg" id="23_gpor5"]
+[ext_resource type="AudioStream" uid="uid://m4ettr4uf6n1" path="res://audio/click2.ogg" id="24_dqr2x"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_i7m4m"]
+clip_count = 3
+clip_0/name = &"Silence"
+clip_0/stream = ExtResource("7_ulq3g")
+clip_0/auto_advance = 0
+clip_1/name = &"Main"
+clip_1/stream = ExtResource("5_rkfhe")
+clip_1/auto_advance = 0
+clip_2/name = &"Shop"
+clip_2/stream = ExtResource("6_g2ndc")
+clip_2/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 1
+}
+}
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_gpor5"]
 
@@ -41,7 +63,8 @@ pause_menu_packed = ExtResource("2_7aihr")
 focused_viewport = NodePath("../ViewportContainer/ConfigurableSubViewport")
 
 [node name="BackgroundMusicPlayer" parent="." instance=ExtResource("3_3re04")]
-stream = ExtResource("5_rkfhe")
+stream = SubResource("AudioStreamInteractive_i7m4m")
+script = ExtResource("7_0v86b")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -62,30 +85,6 @@ script = ExtResource("11_ulq3g")
 
 [node name="Game" parent="ViewportContainer" instance=ExtResource("5_y85d6")]
 position = Vector2(746, 397)
-
-[node name="CursorFrame" type="Sprite2D" parent="ViewportContainer"]
-visible = false
-position = Vector2(495.74207, 375.8973)
-scale = Vector2(1.584477, 1.584477)
-texture = ExtResource("8_rkfhe")
-
-[node name="GreenArrow" type="Sprite2D" parent="ViewportContainer"]
-visible = false
-position = Vector2(495.74207, 375.8973)
-scale = Vector2(1.584477, 1.584477)
-texture = ExtResource("9_g2ndc")
-
-[node name="BalckArrow" type="Sprite2D" parent="ViewportContainer"]
-visible = false
-position = Vector2(495.74207, 375.8973)
-scale = Vector2(1.584477, 1.584477)
-texture = ExtResource("7_i7m4m")
-
-[node name="KnotOnArrow" type="Sprite2D" parent="ViewportContainer"]
-visible = false
-position = Vector2(495.74207, 375.8973)
-scale = Vector2(1.584477, 1.584477)
-texture = ExtResource("10_0v86b")
 
 [node name="MaskScore" type="Sprite2D" parent="."]
 visible = false
@@ -131,6 +130,8 @@ texture = ExtResource("14_0v86b")
 script = ExtResource("20_g2ndc")
 bounce_sfx = ExtResource("21_0v86b")
 lucky_bounce_sfx = ExtResource("22_ulq3g")
+last_bounce_sfx = ExtResource("19_rkfhe")
+click_sfx = Array[AudioStream]([ExtResource("23_gpor5"), ExtResource("24_dqr2x")])
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SoundEffects"]
 stream = SubResource("AudioStreamPolyphonic_gpor5")

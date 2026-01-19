@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://br22rn30mj8ve"]
+[gd_scene load_steps=5 format=3 uid="uid://dd4oky11i74lb"]
 
 [ext_resource type="Texture2D" uid="uid://d15mbbptx4axr" path="res://assets/PNG/TrailSpeed.png" id="1_kjgba"]
-[ext_resource type="Script" uid="uid://dm0q5jj1ctuvi" path="res://scenes/game_scene/SpeedTrail.gd" id="2_roovi"]
-[ext_resource type="Script" uid="uid://n2umre61d5ax" path="res://scenes/game_scene/speed_trail_sfx.gd" id="3_sairw"]
+[ext_resource type="Script" path="res://scenes/game_scene/SpeedTrail.gd" id="2_roovi"]
+[ext_resource type="Script" path="res://scenes/game_scene/speed_trail_sfx.gd" id="3_sairw"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kjgba"]
 particle_flag_disable_z = true

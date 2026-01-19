@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3dbpey522h8y"]
+
+[ext_resource type="Texture2D" uid="uid://bkgiaxtt1dl88" path="res://assets/aim_minigame/cursor_frame.png" id="1_oov87"]
+[ext_resource type="Texture2D" uid="uid://mior7jdf02p6" path="res://assets/aim_minigame/green_arrow.png" id="2_77l8k"]
+[ext_resource type="Texture2D" uid="uid://b7dmpgj7o1he3" path="res://assets/aim_minigame/balck_arrow.png" id="3_a5bdy"]
+[ext_resource type="Texture2D" uid="uid://f1dl2eii0t51" path="res://assets/aim_minigame/knot_on_arrow.png" id="4_rrhew"]
+
+[node name="AimMinigame" type="Node2D"]
+
+[node name="CursorFrame" type="Sprite2D" parent="."]
+position = Vector2(495.74207, 375.8973)
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("1_oov87")
+
+[node name="GreenArrow" type="Sprite2D" parent="."]
+position = Vector2(495.74207, 375.8973)
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("2_77l8k")
+
+[node name="BalckArrow" type="Sprite2D" parent="."]
+position = Vector2(495.74207, 375.8973)
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("3_a5bdy")
+
+[node name="KnotOnArrow" type="Sprite2D" parent="."]
+position = Vector2(495.74207, 375.8973)
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("4_rrhew")

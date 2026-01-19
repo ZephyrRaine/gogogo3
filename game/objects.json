@@ -23,7 +23,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_perfect_launch", "stat": "final_score_multiplier", "op": "add", "value": 10.0, "is_permanent": true, "reset_on_fail": "on_non_perfect" }
+      { "trigger": "on_perfect_launch", "stat": "final_score_multiplier", "op": "add", "value": 10.0, "is_permanent": true, "reset_on_fail": "on_non_perfect_launch" }
     ]
   },
   {
@@ -32,7 +32,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_aim", "stat": "aim_ratio_speed", "op": "mul", "value": 0.5 }
+      { "trigger": "on_launch_minigame", "stat": "aim_ratio_speed", "op": "mul", "value": 0.5 }
     ]
   },
   {
@@ -41,7 +41,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_force", "stat": "force_ratio_speed", "op": "mul", "value": 0.5 }
+      { "trigger": "on_launch_minigame", "stat": "force_ratio_speed", "op": "mul", "value": 0.5 }
     ]
   },
   {
@@ -95,7 +95,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_lucky_bounce", "stat": "splash_score", "op": "add", "value": 3.0 }
+      { "trigger": "on_lucky_bounce", "stat": "bounce_count_amount", "op": "add", "value": 3.0 }
     ]
   },
   {
@@ -105,7 +105,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_launch", "stat": "lucky_bounce_chance_buff", "op": "set", "value": 0.5 }
+      { "trigger": "on_launch", "stat": "lucky_bounce_probability", "op": "set", "value": 0.5 }
     ]
   },
   {
@@ -114,7 +114,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "passive", "stat": "lucky_bounce_chance", "op": "add", "value": 0.1 }
+      { "trigger": "on_launch", "stat": "lucky_bounce_probability", "op": "add", "value": 0.1 }
     ]
   },
   {

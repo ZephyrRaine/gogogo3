@@ -18,6 +18,8 @@ var aim_ratio: float = 0.0
 var force_ratio_direction: int = 1
 var force_ratio: float = 0.0
 
+@onready var og_aim_ratio_speed = aim_ratio_speed
+@onready var og_force_ratio_speed = force_ratio_speed
 
 func _ready() -> void:
 	aim_indicator.set_target_rotation(aim_ratio_target)
@@ -35,11 +37,13 @@ func _input(event: InputEvent) -> void:
 			LaunchPhases.LAUNCH_AIM:
 				aim_indicator.visible = false
 				force_indicator.visible = true
-				
-				if (bypass_forceTest): 
+
+				if (bypass_forceTest):
 					force_ratio = 1
 					launch()
-				else: current_launching_phase = LaunchPhases.LAUNCH_FORCE
+				else:
+					current_launching_phase = LaunchPhases.LAUNCH_FORCE
+
 			LaunchPhases.LAUNCH_FORCE:
 				launch()
 
@@ -62,12 +66,14 @@ func _process(delta: float) -> void:
 func request_launch():
 	visible = true
 	await get_tree().create_timer(.25).timeout
+	aim_ratio_speed = og_aim_ratio_speed
+	force_ratio_speed = og_force_ratio_speed
+	ObjectManager.apply_trigger("on_launch_minigame", self)
 	current_launching_phase = LaunchPhases.LAUNCH_AIM
-	
+
 func launch():
 	EventBus.new_launch.emit(aim_ratio_target - aim_ratio, force_ratio)
 	current_launching_phase = LaunchPhases.NONE
 	force_indicator.visible = false
 	aim_indicator.visible = true
 	visible = false
-	

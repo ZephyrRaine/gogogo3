@@ -3,6 +3,5 @@
 [ext_resource type="SpriteFrames" uid="uid://p1q21rxuenrs" path="res://assets/PNG/Animation/PaddleRotate.tres" id="1_8bewv"]
 
 [node name="PebbleAnim" type="AnimatedSprite2D"]
-position = Vector2(49, -192)
 sprite_frames = ExtResource("1_8bewv")
 frame_progress = 0.27552584

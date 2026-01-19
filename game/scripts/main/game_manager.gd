@@ -79,9 +79,13 @@ func scoring_done(round_score):
 
 #TODO: make it so straight launches are better than up launches lol
 func received_launch(aim_percentage: float, force_percentage: float):
-	if abs(aim_percentage) <= 0.05:
-		print("Perfect Aim!")
-		ObjectManager.apply_trigger("on_perfect_aim", self)
+	print("aim_percentage : %f" % aim_percentage)
+	print("force_percentage : %f" % force_percentage)
+	if abs(aim_percentage - 0.02) <= 0.1 && abs(1 - force_percentage) <= 0.1  :
+		print("Perfect Launch!")
+		ObjectManager.apply_trigger("on_perfect_launch", self)
+	else:
+		ObjectManager.apply_trigger("on_non_perfect_launch", self)
 
 
 	pebble.launch_pebble(

@@ -4,8 +4,8 @@ extends Node2D
 var speedTrail:GPUParticles2D = get_node("SpeedTrailSFX")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EventBus.launch_done.connect(_onlunchdone)
-	EventBus.new_launch.connect(_onLunchstart)
+	#EventBus.launch_done.connect(_onlunchdone)
+	#EventBus.new_launch.connect(_onLunchstart)
 	pass # Replace with function body.
 
 func _onLunchstart(_direction:Vector3, _force:float) -> void :

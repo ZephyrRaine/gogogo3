@@ -1,0 +1,110 @@
+[gd_scene load_steps=17 format=3 uid="uid://c3hj0dvfg0v4b"]
+
+[ext_resource type="Script" uid="uid://cr6m1l7oooaop" path="res://scripts/main/launch_manager.gd" id="1_ylwci"]
+[ext_resource type="Script" uid="uid://c486e1smalas7" path="res://scripts/main/aim_indicator.gd" id="2_dfkmb"]
+[ext_resource type="Texture2D" uid="uid://bkgiaxtt1dl88" path="res://assets/aim_minigame/cursor_frame.png" id="3_852wh"]
+[ext_resource type="Texture2D" uid="uid://mior7jdf02p6" path="res://assets/aim_minigame/green_arrow.png" id="4_r06sj"]
+[ext_resource type="Texture2D" uid="uid://b7dmpgj7o1he3" path="res://assets/aim_minigame/balck_arrow.png" id="5_yahi5"]
+[ext_resource type="Texture2D" uid="uid://f1dl2eii0t51" path="res://assets/aim_minigame/knot_on_arrow.png" id="6_0dimd"]
+[ext_resource type="Script" uid="uid://de3s64g4d4bxi" path="res://scripts/main/force_indicator.gd" id="7_4yxel"]
+[ext_resource type="Texture2D" uid="uid://picviqo0vqqg" path="res://assets/power_minigame/arrow_frame.png" id="8_mgcq3"]
+[ext_resource type="Texture2D" uid="uid://dlkyq7vo7oxv6" path="res://assets/power_minigame/power_1.png" id="9_r3qt8"]
+[ext_resource type="Texture2D" uid="uid://buuhaxkwj43sf" path="res://assets/power_minigame/power_2.png" id="10_ansia"]
+[ext_resource type="Texture2D" uid="uid://dg0dwyv2mbua8" path="res://assets/power_minigame/power_3.png" id="11_cblew"]
+[ext_resource type="Texture2D" uid="uid://r7py0d57ker8" path="res://assets/power_minigame/power_4.png" id="12_2jkex"]
+[ext_resource type="Texture2D" uid="uid://dsufgoe1mdn1d" path="res://assets/power_minigame/power_5.png" id="13_ymxc8"]
+[ext_resource type="Texture2D" uid="uid://b3n3kpoua4fsj" path="res://assets/power_minigame/power_6.png" id="14_03ct3"]
+[ext_resource type="Texture2D" uid="uid://6cr6heahfk6m" path="res://assets/power_minigame/power_7.png" id="15_nk0yr"]
+[ext_resource type="Texture2D" uid="uid://b1kt2iv4jtu0f" path="res://assets/power_minigame/power_max.png" id="16_8ec3a"]
+
+[node name="LaunchManager" type="Node2D" node_paths=PackedStringArray("aim_indicator", "force_indicator")]
+visible = false
+script = ExtResource("1_ylwci")
+current_launching_phase = 1
+aim_indicator = NodePath("AimMinigame")
+aim_ratio_speed = 2.0
+aim_ratio_target = 0.5
+bypass_forceTest = false
+force_indicator = NodePath("AimForce")
+force_ratio_speed = 1.5
+
+[node name="AimMinigame" type="Node2D" parent="." node_paths=PackedStringArray("needle_pivot", "target_pivot")]
+script = ExtResource("2_dfkmb")
+needle_pivot = NodePath("NeedlePivot")
+target_pivot = NodePath("TargetPivot")
+
+[node name="CursorFrame" type="Sprite2D" parent="AimMinigame"]
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("3_852wh")
+
+[node name="TargetPivot" type="Node2D" parent="AimMinigame"]
+position = Vector2(-22, 0)
+rotation = -0.12217305
+
+[node name="GreenArrow" type="Sprite2D" parent="AimMinigame/TargetPivot"]
+position = Vector2(22, -3)
+rotation = -0.12217305
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("4_r06sj")
+
+[node name="NeedlePivot" type="Node2D" parent="AimMinigame"]
+position = Vector2(-22, 0)
+
+[node name="BalckArrow" type="Sprite2D" parent="AimMinigame/NeedlePivot"]
+position = Vector2(22, 0)
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("5_yahi5")
+
+[node name="KnotOnArrow" type="Sprite2D" parent="AimMinigame"]
+scale = Vector2(1.584477, 1.584477)
+texture = ExtResource("6_0dimd")
+
+[node name="AimForce" type="Node2D" parent="." node_paths=PackedStringArray("force_gauge_els")]
+visible = false
+position = Vector2(24, 1)
+script = ExtResource("7_4yxel")
+force_gauge_els = [NodePath("Power1"), NodePath("Power2"), NodePath("Power3"), NodePath("Power4"), NodePath("Power5"), NodePath("Power6"), NodePath("Power7"), NodePath("PowerMax")]
+
+[node name="ArrowFrame" type="Sprite2D" parent="AimForce"]
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("8_mgcq3")
+
+[node name="Power1" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("9_r3qt8")
+
+[node name="Power2" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("10_ansia")
+
+[node name="Power3" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("11_cblew")
+
+[node name="Power4" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("12_2jkex")
+
+[node name="Power5" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("13_ymxc8")
+
+[node name="Power6" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("14_03ct3")
+
+[node name="Power7" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("15_nk0yr")
+
+[node name="PowerMax" type="Sprite2D" parent="AimForce"]
+visible = false
+scale = Vector2(1.8738071, 1.8738071)
+texture = ExtResource("16_8ec3a")
