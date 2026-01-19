@@ -51,7 +51,7 @@ func _ready() -> void:
 	EventBus.new_launch.connect(received_launch)
 	EventBus.scoring_done.connect(scoring_done)
 	EventBus.launch_done.connect(launch_done)
-	EventBus.shop_ended.connect(launch_manager.request_launch)
+	EventBus.shop_ended.connect(_new_launch)
 	EventBus.hide_tournament.connect(tournament_closed)
 	EventBus.spend_money.connect(spend_money)
 	EventBus.show_tournament.emit(compute_tournament_dict())
@@ -74,7 +74,12 @@ func tournament_closed():
 		EventBus.shop_requested.emit(money)
 	else:
 		current_round += 1
-		launch_manager.request_launch()
+		_new_launch()
+
+func _new_launch():
+	EventBus.new_round.emit(current_day, current_round)
+	launch_manager.request_launch()
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("reset"):

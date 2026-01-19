@@ -7,9 +7,6 @@ class_name TournamentView
 
 func display_tournament(tournament: Dictionary):
 	visible = true
-	day_label.text = "Day %d " % [tournament.day_index + 1]
-	if tournament.round_index >= 0:
-		day_label.text += "- Round %d/3" % [tournament.round_index + 1]
 
 	for n in rows_container.get_children():
 		n.queue_free()
@@ -24,4 +21,6 @@ func display_tournament(tournament: Dictionary):
 			i + 1, goals[i], tournament.gains[i], i == tournament.rank_index
 		)
 		rows_container.add_child(instance)
+		if i == tournament.rank_index:
+			instance.squeeze_anim()
 		i += 1

@@ -1,12 +1,10 @@
 extends CanvasLayer
 class_name HUD
 
-@export_group("Score")
 @export var launch_hud:LaunchHud
 @onready var shop: Control = $"SHOP"
 @export var tournament_view : TournamentView
 
-@export_group("other UI fx")
 @export var effects_manager:EffectsManager
 
 var round_score:int
@@ -20,13 +18,17 @@ func _ready() -> void:
 	EventBus.shop_ended.connect(hide_shop)
 	EventBus.scoring_show.connect(display_score)
 	EventBus.show_tournament.connect(show_tournament_requested)
+	EventBus.new_round.connect(on_start_round)
 	EventBus.start_launch.connect(on_start_launch)
 	EventBus.launch_done.connect(on_launch_done)
 
+func on_start_round(day_index:int, round_index:int):
+	launch_hud.display_date(day_index + 1, round_index + 1, 3)
 
 func on_start_launch(_pebble:Pebble):
 	pebble = _pebble;
 	effects_manager.pebble = pebble
+	
 	launch_hud.display_score(0, 0, 0)
 	launch_hud.set_score_visible(true)
 	launch_hud.set_total_score_visible(false)
@@ -78,6 +80,7 @@ func display_score(distance: float, bounces: int):
 
 func display_shop(_m):
 	shop.visible = true
+	launch_hud.hide_round()
 
 
 func hide_shop():

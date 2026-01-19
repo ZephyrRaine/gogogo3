@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://cvxoobwi2pn2x"]
+
+[ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="1_tii7e"]
+
+[resource]
+font = ExtResource("1_tii7e")
+font_size = 48
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(2, 2)
+stacked_shadow_0/color = Color(0.17254902, 0.39215687, 0.57254905, 1)

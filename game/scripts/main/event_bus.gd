@@ -1,5 +1,7 @@
 extends Node
 
+#after shop, before launch, the in-between
+signal new_round(day_index:int, round_index:int)
 signal new_launch(direction: Vector3, force: float)
 signal start_launch(pebble: Pebble)
 

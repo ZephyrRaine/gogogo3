@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dyt64ecawf00s"]
+[gd_scene load_steps=17 format=3 uid="uid://dyt64ecawf00s"]
 
 [ext_resource type="Script" uid="uid://nqibqah42t2w" path="res://scripts/main/hud/launch_hud.gd" id="1_7w3j4"]
 [ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="2_asww3"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="8_amh6s"]
 [ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="9_eaoyo"]
 [ext_resource type="Texture2D" uid="uid://dqw5saf0b0ntr" path="res://assets/UI/Score_screen/mask_egal_score.png" id="10_uqs87"]
+[ext_resource type="LabelSettings" uid="uid://cvxoobwi2pn2x" path="res://resources/label_settings_basic.tres" id="11_asww3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vl2ax"]
 content_margin_left = 30.0
@@ -48,7 +49,7 @@ expand_margin_top = 10.0
 font = ExtResource("3_wayuj")
 font_size = 52
 
-[node name="LAUNCH_VIEW" type="Control" node_paths=PackedStringArray("score_root", "score_total_root", "score_total_label", "score_dist_label", "score_bounce_label")]
+[node name="LAUNCH_VIEW" type="Control" node_paths=PackedStringArray("date_day", "date_separator", "date_round", "score_root", "score_total_root", "score_total_label", "score_dist_label", "score_bounce_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,6 +57,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7w3j4")
+date_day = NodePath("DateMargin/DateBox/LabelDay")
+date_separator = NodePath("DateMargin/DateBox/LabelSeparate")
+date_round = NodePath("DateMargin/DateBox/LabelRound")
 score_root = NodePath("ScoreLabel")
 score_total_root = NodePath("ScoreLabel/TotalRoot")
 score_total_label = NodePath("ScoreLabel/TotalRoot/cont_score/Container_Score/Label_SCORE")
@@ -64,14 +68,11 @@ score_bounce_label = NodePath("ScoreLabel/cont_splash/MarginContainer2/Container
 
 [node name="ScoreLabel" type="HBoxContainer" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -400.5
-offset_right = 400.5
-offset_bottom = 119.0
-grow_horizontal = 2
+layout_mode = 0
+offset_left = 266.0
+offset_top = 57.0
+offset_right = 1009.0
+offset_bottom = 170.0
 
 [node name="cont_speed" type="HFlowContainer" parent="ScoreLabel"]
 layout_mode = 2
@@ -181,3 +182,33 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 texture = ExtResource("10_uqs87")
 stretch_mode = 2
+
+[node name="DateMargin" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="DateBox" type="HBoxContainer" parent="DateMargin"]
+layout_mode = 2
+
+[node name="LabelDay" type="Label" parent="DateMargin/DateBox"]
+layout_mode = 2
+text = "DAY 1"
+label_settings = ExtResource("11_asww3")
+vertical_alignment = 1
+
+[node name="LabelSeparate" type="Label" parent="DateMargin/DateBox"]
+layout_mode = 2
+text = "-"
+label_settings = ExtResource("11_asww3")
+vertical_alignment = 1
+
+[node name="LabelRound" type="Label" parent="DateMargin/DateBox"]
+layout_mode = 2
+text = "ROUND 1/3"
+label_settings = ExtResource("11_asww3")
+vertical_alignment = 1
