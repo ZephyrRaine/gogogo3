@@ -10,18 +10,23 @@ var current_score = 0;
 var game_started = false;
 
 var goals =[
-	[850, 750, 650, 550, 450, 350, 250],
-	[1850, 750, 650, 550, 450, 350, 250],
-	[2850, 750, 650, 550, 450, 350, 250],
-	[3850, 750, 650, 550, 450, 350, 250],
-	[4850, 750, 650, 550, 450, 350, 250],
-	[5850, 750, 650, 550, 450, 350, 250],
-	[6850, 750, 650, 550, 450, 350, 250],
-	[7850, 750, 650, 550, 450, 350, 250],
+	[3000, 2000, 1750, 1500, 1000, 500, 250],
+	[4000, 2500, 1800, 1500, 1000, 500, 250],
+	[5000, 3000, 2000, 1500, 1000, 500, 250],
+	[7000, 5000, 3000, 2000, 1000, 500, 250],
+	[10000, 7500, 5000, 2500, 1000, 500, 250],
+	[50000, 10000, 7500, 5000, 2500, 500, 250],
+	[100000, 50000, 10000, 5000, 1000, 500, 250]
 ]
 var gains = [5, 4, 3, 2, 1, 1, 1, -1]
 
 var money = 0
+
+func get_goals(day: int) -> Array:
+	if day < goals.size():
+		return goals[day]
+	else:
+		return goals[goals.size() - 1]
 
 func get_rank(scores: Array, player_score: int) -> int:
 	for i in range(scores.size()):
@@ -35,9 +40,9 @@ func compute_tournament_dict():
 		"day_index": current_day,
 		"round_index": current_round,
 		"player_score": current_score,
-		"goals" : goals[current_day],
+		"goals" : get_goals(current_day),
 		"gains" : gains,
-		"rank_index": get_rank(goals[current_day], current_score)
+		"rank_index": get_rank(get_goals(current_day), current_score)
 	}
 	return tournament_dict
 
@@ -55,7 +60,7 @@ func spend_money(_previous_money:int, new_money:int):
 	money = new_money
 
 func tournament_closed():
-	var current_rank = get_rank(goals[current_day], current_score)
+	var current_rank = get_rank(get_goals(current_day), current_score)
 	if current_round == 2:
 		if current_rank == 7:
 			get_tree().reload_current_scene()
