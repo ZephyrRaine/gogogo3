@@ -1,12 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=21 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_3cd5f"]
-[ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="3_bodji"]
+[ext_resource type="PackedScene" uid="uid://dlem3qo2pk4fs" path="res://scenes/game_scene/hud/effects_hud.tscn" id="3_s1vs5"]
 [ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="3_vl2ax"]
 [ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="4_5jsxa"]
 [ext_resource type="Script" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
-[ext_resource type="Script" uid="uid://c2kmh1vuqhs8w" path="res://scripts/main/hud/rebound_label.gd" id="4_s1vs5"]
 [ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="5_7d4ub"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
 [ext_resource type="Texture2D" uid="uid://ba2pbu4hs4oku" path="res://assets/UI/Score_screen/mask_splash.png" id="6_8338t"]
@@ -53,15 +52,6 @@ expand_margin_top = 10.0
 font = ExtResource("2_3cd5f")
 font_size = 52
 
-[sub_resource type="LabelSettings" id="LabelSettings_s1vs5"]
-font = ExtResource("2_3cd5f")
-font_size = 54
-font_color = Color(0.7921569, 0.7176471, 0, 1)
-
-[sub_resource type="Curve" id="Curve_s1vs5"]
-_data = [Vector2(0, 0), 0.0, 3.3333333, 0, 1, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.4620939, 0.52808994), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="LabelSettings" id="LabelSettings_v20na"]
 font = ExtResource("2_3cd5f")
 font_size = 54
@@ -74,7 +64,7 @@ score_total_label = NodePath("ScoreLabel/MarginContainer/cont_score/Container_Sc
 score_dist_label = NodePath("ScoreLabel/cont_speed/Container_Dist/Label_Dist")
 score_bounce_label = NodePath("ScoreLabel/cont_splash/MarginContainer2/Container_Bounce/Label_Bounce")
 tournament_view = NodePath("TOURNAMENT_VIEW")
-effects_manager = NodePath("EffectsManager")
+effects_manager = NodePath("EffectsHud")
 
 [node name="ScoreLabel" type="HBoxContainer" parent="."]
 visible = false
@@ -195,34 +185,7 @@ size_flags_vertical = 8
 texture = ExtResource("10_21gm5")
 stretch_mode = 2
 
-[node name="EffectsManager" type="Control" parent="." node_paths=PackedStringArray("rebound_label_lucky")]
-physics_interpolation_mode = 0
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -11.0
-offset_top = -7.0
-offset_right = -11.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_bodji")
-rebound_label_lucky = NodePath("ReboundLabel_lucky")
-metadata/_custom_type_script = "uid://dc8r6k04htw4f"
-
-[node name="ReboundLabel_lucky" type="Label" parent="EffectsManager"]
-layout_mode = 1
-offset_right = 119.0
-offset_bottom = 59.0
-scale = Vector2(0.5, 0.5)
-text = "LUCKY!"
-label_settings = SubResource("LabelSettings_s1vs5")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("4_s1vs5")
-anim_curve_y = SubResource("Curve_s1vs5")
-metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
+[node name="EffectsHud" parent="." instance=ExtResource("3_s1vs5")]
 
 [node name="ObjectsContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 80)

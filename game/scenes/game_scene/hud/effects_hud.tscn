@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlem3qo2pk4fs"]
+
+[ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="1_bjfyt"]
+[ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_px64l"]
+[ext_resource type="Script" uid="uid://c2kmh1vuqhs8w" path="res://scripts/main/hud/rebound_label.gd" id="3_hsdoy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s1vs5"]
+font = ExtResource("2_px64l")
+font_size = 54
+font_color = Color(0.96862745, 0.8235294, 0, 1)
+
+[sub_resource type="Curve" id="Curve_s1vs5"]
+_data = [Vector2(0, 0), 0.0, 3.3333333, 0, 1, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.4620939, 0.52808994), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_bjfyt"]
+font = ExtResource("2_px64l")
+font_size = 54
+font_color = Color(0.9665124, 0.6002638, 0, 1)
+
+[node name="EffectsHud" type="Control" node_paths=PackedStringArray("rebound_label_lucky", "rebound_label_eagle")]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -7.0
+offset_right = -11.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bjfyt")
+rebound_label_lucky = NodePath("ReboundLabel_lucky")
+rebound_label_eagle = NodePath("ReboundLabel_eagle")
+metadata/_custom_type_script = "uid://dc8r6k04htw4f"
+
+[node name="ReboundLabel_lucky" type="Label" parent="."]
+layout_mode = 1
+offset_right = 119.0
+offset_bottom = 59.0
+scale = Vector2(0.5, 0.5)
+text = "LUCKY!"
+label_settings = SubResource("LabelSettings_s1vs5")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hsdoy")
+anim_curve_y = SubResource("Curve_s1vs5")
+metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
+
+[node name="ReboundLabel_eagle" type="Label" parent="."]
+layout_mode = 0
+offset_right = 119.0
+offset_bottom = 59.0
+scale = Vector2(0.5, 0.5)
+text = "EAGLE!"
+label_settings = SubResource("LabelSettings_bjfyt")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hsdoy")
+anim_curve_y = SubResource("Curve_s1vs5")
+anim_amplitude = Vector2(200, -80)
+scale_amplitude = Vector2(1, 1)
+metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"

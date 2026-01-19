@@ -124,7 +124,7 @@
     "price": 1,
     "rarity": 1,
     "effects": [
-      { "trigger": "on_bounce_physics", "stat": "lost_length_ratio_on_bounce", "op": "mul", "value":0.5, "chance": 0.2 }
+      { "trigger": "on_bounce_physics", "stat": "eagle_width_boost", "op": "mul", "value":0.5, "chance": 0.2 }
     ]
   },
   {

@@ -48,6 +48,7 @@ var p2 : Vector2
 var t = 0.0
 
 var current_bounce_velocity
+var current_bounce_is_eagle
 
 
 func _ready() -> void:
@@ -113,7 +114,7 @@ func end_bounce():
 	# et appliquer l'opération définie, s'il y a une chance de proc ça le fait que si le lancer de dé est réussi
 	# bien vérifier le nom du trigger et le nom de la stat dans objects.json
 	#{ "trigger": "on_bounce_physics", "stat": "lost_length_ratio_on_bounce", "op": "mul", "value": 0.5, "chance": 0.2 }
-	bounce_physics_ctx = ObjectManager.apply_trigger("on_bounce_physics", bounce_physics_ctx)
+	ObjectManager.apply_trigger("on_bounce_physics", bounce_physics_ctx)
 
 	var is_lucky_bounce = randf() <= lucky_bounce_probability
 	if !is_lucky_bounce :
@@ -123,13 +124,20 @@ func end_bounce():
 	else:
 		ObjectManager.apply_trigger("on_lucky_bounce", bounce_ctx)
 
+	if(bounce_angle > -0.1): bounce_angle = -0.1
+	
+	#eagle bounce
+	var eagle_width_boost = 0.0
+	ObjectManager.apply_trigger("eagle_width_boost", eagle_width_boost)
+	current_bounce_is_eagle = eagle_width_boost > 0.00001
+	if current_bounce_is_eagle :
+		bounce_length += eagle_width_boost
+
 	EventBus.bounce.emit(is_lucky_bounce)
 
 	score_bounces += bounce_ctx["bounce_count_amount"]
 	bounce_index = bounce_index + 1
 
-
-	if(bounce_angle > -0.1): bounce_angle = -0.1
 	start_bounce()
 
 func launch_over():
