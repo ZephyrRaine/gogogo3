@@ -1,5 +1,4 @@
 [
-
   {
     "id": "tournament_bonus_round",
     "description": "add a bonus round for your tournaments",
@@ -35,7 +34,7 @@
     "effects": [
       { "trigger": "on_bounce", "stat": "gold_earned", "op": "add", "value": 10.0, "chance": 0.1 }
     ]
-  }
+  },
 {
   "id": "flaming_boost",
   "name": "Flamming boost",

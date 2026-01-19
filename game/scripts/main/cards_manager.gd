@@ -3,6 +3,7 @@ class_name CardsManager
 
 signal selected_card(index)
 
+@export var reroll_cost: int = 0
 @export var card_prefab: PackedScene
 @export var money_label: Label
 var currently_selected: int = -1
@@ -65,3 +66,8 @@ func buy_clicked():
 
 func close_clicked():
 	EventBus.shop_ended.emit()
+
+
+func _on_reroll_pressed() -> void:
+	if(temp_money - reroll_cost >= 0):
+		shop_requested(temp_money - reroll_cost)

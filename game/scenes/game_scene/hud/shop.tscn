@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://c24rvmkqk7e80"]
+
+[ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="1_3uddr"]
+[ext_resource type="Script" uid="uid://dan438uyjxutk" path="res://scripts/main/cards_manager.gd" id="2_weddl"]
+[ext_resource type="PackedScene" uid="uid://br7qik73bu5r4" path="res://scenes/game_scene/hud/object_card.tscn" id="3_xipi5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v20na"]
+font = ExtResource("1_3uddr")
+font_size = 54
+
+[node name="SHOP" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4627451)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Shop" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SHOP"
+label_settings = SubResource("LabelSettings_v20na")
+horizontal_alignment = 1
+
+[node name="Shop2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "45$"
+label_settings = SubResource("LabelSettings_v20na")
+horizontal_alignment = 1
+
+[node name="CardsManager" type="HBoxContainer" parent="VBoxContainer" node_paths=PackedStringArray("money_label")]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 0
+theme_override_constants/separation = 109
+script = ExtResource("2_weddl")
+card_prefab = ExtResource("3_xipi5")
+money_label = NodePath("../Shop2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "BUY"
+
+[node name="Reroll" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "REROLL"
+
+[node name="Button2" type="Button" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CLOSE"
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Button" to="VBoxContainer/CardsManager" method="buy_clicked"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Reroll" to="VBoxContainer/CardsManager" method="_on_reroll_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Button2" to="VBoxContainer/CardsManager" method="close_clicked"]

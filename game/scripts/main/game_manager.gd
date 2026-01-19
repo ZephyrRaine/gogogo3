@@ -9,7 +9,7 @@ var current_round = -1;
 var current_score = 0;
 var game_started = false;
 
-var goals =[8500, 7500, 6500, 5500, 4500, 3500, 2500]
+var goals =[850, 750, 650, 550, 450, 350, 250]
 var gains = [5, 4, 3, 2, 1, 1, 1, -1]
 
 var money = 0
