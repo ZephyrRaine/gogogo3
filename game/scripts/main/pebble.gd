@@ -13,6 +13,7 @@ class_name Pebble
 @export var min_bounce_velocity = 0.5
 @export var min_bounce_angle = -0.4
 @export var lucky_bounce_probability = 0.05
+@export var eagle_width_boost = 0.0
 
 @export_group("Friction")
 @export var lost_angle_ratio_on_bounce = 0.98
@@ -67,6 +68,7 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	score_bounces = 0
 	score_distance = 0.0
 	lucky_bounce_probability = og_lucky_bounce_probability
+	eagle_width_boost = 0.0
 
 	# APPLY PASSIVE & LAUNCH EFFECTS
 	ObjectManager.apply_trigger("passive", self)
@@ -106,9 +108,10 @@ func end_bounce():
 	ObjectManager.apply_trigger("on_bounce_count", bounce_ctx)
 
 	# HANDLE BOUNCE PHYSICS
-
 	#On passe un dictionaire "contexte" avec toutes les variables qui nous intéressent sur le trigger
-	var bounce_physics_ctx = {"lost_length_ratio_on_bounce": lost_length_ratio_on_bounce}
+	var bounce_physics_ctx = {
+		"lost_length_ratio_on_bounce": lost_length_ratio_on_bounce,
+		"eagle_width_boost": eagle_width_boost }
 	#L'object manager va appeler tous les objets qui ont le trigger en question,
 	# vont regarder si l'objet passé en param (en l'occurence le dictionnaire) voir s'il a la stat en question,
 	# et appliquer l'opération définie, s'il y a une chance de proc ça le fait que si le lancer de dé est réussi
@@ -124,11 +127,9 @@ func end_bounce():
 	else:
 		ObjectManager.apply_trigger("on_lucky_bounce", bounce_ctx)
 
-	if(bounce_angle > -0.1): bounce_angle = -0.1
+	if bounce_angle > -0.1 : bounce_angle = -0.1
 	
 	#eagle bounce
-	var eagle_width_boost = 0.0
-	ObjectManager.apply_trigger("eagle_width_boost", eagle_width_boost)
 	current_bounce_is_eagle = eagle_width_boost > 0.00001
 	if current_bounce_is_eagle :
 		bounce_length += eagle_width_boost
