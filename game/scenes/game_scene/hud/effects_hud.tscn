@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlem3qo2pk4fs"]
+[gd_scene load_steps=9 format=3 uid="uid://dlem3qo2pk4fs"]
 
 [ext_resource type="Script" uid="uid://dc8r6k04htw4f" path="res://scripts/main/hud/effects_manager.gd" id="1_bjfyt"]
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_px64l"]
@@ -6,19 +6,28 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_s1vs5"]
 font = ExtResource("2_px64l")
-font_size = 54
+font_size = 108
 font_color = Color(0.96862745, 0.8235294, 0, 1)
 
 [sub_resource type="Curve" id="Curve_s1vs5"]
-_data = [Vector2(0, 0), 0.0, 3.3333333, 0, 1, Vector2(0.3, 1), 0.0, 0.0, 0, 0, Vector2(0.4620939, 0.52808994), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 6.442914, 0, 1, Vector2(0.15346536, 0.9887641), 0.73430246, 0.73430246, 0, 0, Vector2(0.22772276, 0.94382024), 0.0, 0.0, 0, 0, Vector2(0.2970297, 0.9887641), 0.0, 0.0, 0, 0, Vector2(0.46534652, 0.9887641), 0.14185391, 0.0, 0, 0]
+point_count = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjfyt"]
 font = ExtResource("2_px64l")
-font_size = 54
-font_color = Color(0.9665124, 0.6002638, 0, 1)
+font_size = 108
+font_color = Color(0.5808351, 0.35976493, 0.0047653294, 1)
 
-[node name="EffectsHud" type="Control" node_paths=PackedStringArray("rebound_label_lucky", "rebound_label_eagle")]
+[sub_resource type="LabelSettings" id="LabelSettings_px64l"]
+font = ExtResource("2_px64l")
+font_size = 108
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsdoy"]
+font = ExtResource("2_px64l")
+font_size = 108
+font_color = Color(0.5212015, 0.06338817, 0.6733078, 1)
+
+[node name="EffectsHud" type="Control" node_paths=PackedStringArray("rebound_label_lucky", "rebound_label_eagle", "rebound_label_holy")]
 physics_interpolation_mode = 0
 layout_mode = 3
 anchors_preset = 15
@@ -33,6 +42,7 @@ grow_vertical = 2
 script = ExtResource("1_bjfyt")
 rebound_label_lucky = NodePath("ReboundLabel_lucky")
 rebound_label_eagle = NodePath("ReboundLabel_eagle")
+rebound_label_holy = NodePath("ReboundLabel_holy")
 metadata/_custom_type_script = "uid://dc8r6k04htw4f"
 
 [node name="ReboundLabel_lucky" type="Label" parent="."]
@@ -46,6 +56,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_hsdoy")
 anim_curve_y = SubResource("Curve_s1vs5")
+scale_amplitude = Vector2(1, 1)
 metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
 
 [node name="ReboundLabel_eagle" type="Label" parent="."]
@@ -61,4 +72,36 @@ script = ExtResource("3_hsdoy")
 anim_curve_y = SubResource("Curve_s1vs5")
 anim_amplitude = Vector2(200, -80)
 scale_amplitude = Vector2(1, 1)
+metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
+
+[node name="ReboundLabel_holy" type="Label" parent="."]
+layout_mode = 0
+offset_right = 226.0
+offset_bottom = 116.0
+scale = Vector2(0.5, 0.5)
+text = "HOLY!"
+label_settings = SubResource("LabelSettings_px64l")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hsdoy")
+anim_curve_y = SubResource("Curve_s1vs5")
+anim_amplitude = Vector2(0, -200)
+scale_amplitude = Vector2(1, 1)
+anim_speed = 1
+metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"
+
+[node name="ReboundLabel_dash" type="Label" parent="."]
+layout_mode = 0
+offset_right = 226.0
+offset_bottom = 116.0
+scale = Vector2(0.5, 0.5)
+text = "DASH!"
+label_settings = SubResource("LabelSettings_hsdoy")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_hsdoy")
+anim_curve_y = SubResource("Curve_s1vs5")
+anim_amplitude = Vector2(300, 0)
+scale_amplitude = Vector2(1, 1)
+anim_speed = 3
 metadata/_custom_type_script = "uid://c2kmh1vuqhs8w"

@@ -124,7 +124,7 @@
 	"price": 2,
 	"rarity": 1,
 	"effects": [
-	  { "trigger": "on_bounce_physics", "stat": "eagle_width_boost", "op": "add", "value":40, "chance": 1.0 }
+	  { "trigger": "on_bounce_physics", "stat": "eagle_width_boost", "op": "add", "value": 40, "chance": 0.1 }
 	]
   },
   {
@@ -134,7 +134,7 @@
 	"price": 1,
 	"rarity": 2,
 	"effects": [
-	  { "trigger": "on_bounce_physics", "stat": "velocity_y", "op": "mul", "value": 1.5, "chance": 0.2 }
+	  { "trigger": "on_bounce_physics", "stat": "holy_height_boost", "op": "add", "value": 1.0, "chance": 0.1 }
 	]
   },
   {
@@ -154,7 +154,7 @@
 	"price": 1,
 	"rarity": 1,
 	"effects": [
-	  { "trigger": "on_bounce", "stat": "position_x", "op": "add", "value": 50.0, "chance": 0.1 }
+	  { "trigger": "on_bounce_physics", "stat": "quantic_dash_boost", "op": "add", "value": 50.0, "chance": 0.1 }
 	]
   }
 ]

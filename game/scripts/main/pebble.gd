@@ -13,7 +13,9 @@ class_name Pebble
 @export var min_bounce_velocity = 0.5
 @export var min_bounce_angle = -0.4
 @export var lucky_bounce_probability = 0.05
-@export var eagle_width_boost = 0.0
+var eagle_width_boost = 0.0
+var holy_height_boost = 0.0
+var quantic_dash_boost = 0.0
 
 @export_group("Friction")
 @export var lost_angle_ratio_on_bounce = 0.98
@@ -30,7 +32,6 @@ var height_that_ends = 65.0
 var trajectory_that_ends = 0.4
 
 var velocity
-var distance
 var bounce_angle
 var bounce_index
 var bounce_length
@@ -50,6 +51,8 @@ var t = 0.0
 
 var current_bounce_velocity
 var current_bounce_is_eagle
+var current_bounce_is_holy
+var current_bounce_is_dash
 
 
 func _ready() -> void:
@@ -68,7 +71,6 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	score_bounces = 0
 	score_distance = 0.0
 	lucky_bounce_probability = og_lucky_bounce_probability
-	eagle_width_boost = 0.0
 
 	# APPLY PASSIVE & LAUNCH EFFECTS
 	ObjectManager.apply_trigger("passive", self)
@@ -78,7 +80,6 @@ func launch_pebble(launch_direction: Vector2, launch_force: float):
 	velocity = velocity_per_launch_force_point.sample(launch_force)
 	max_bounce_length = launch_force * bounce_length_per_launch_force_point
 
-	distance = 0
 	bounce_index = 0
 	bounce_angle = launch_direction.angle()
 	bounce_length = max_bounce_length
@@ -96,12 +97,6 @@ func start_bounce():
 	p1.y = water_height + (p2.x - p0.x) * tan(bounce_angle)
 	t = 0.0
 
-	if (bounce_index > 0
-	&& (p1.y > height_that_ends || -((p2.x - p0.x) * tan(bounce_angle)) / (p2.x - p0.x) > trajectory_that_ends)):
-		launch_over()
-	else:
-		distance += p2.x - p0.x
-
 func end_bounce():
 	# HANDLE BOUNCE COUNT LOGIC
 	var bounce_ctx = {"bounce_count_amount": 1} # Default is 1
@@ -111,7 +106,9 @@ func end_bounce():
 	#On passe un dictionaire "contexte" avec toutes les variables qui nous intéressent sur le trigger
 	var bounce_physics_ctx = {
 		"lost_length_ratio_on_bounce": lost_length_ratio_on_bounce,
-		"eagle_width_boost": eagle_width_boost }
+		"eagle_width_boost": eagle_width_boost,
+		"holy_height_boost": holy_height_boost ,
+		"quantic_dash_boost": quantic_dash_boost }
 	#L'object manager va appeler tous les objets qui ont le trigger en question,
 	# vont regarder si l'objet passé en param (en l'occurence le dictionnaire) voir s'il a la stat en question,
 	# et appliquer l'opération définie, s'il y a une chance de proc ça le fait que si le lancer de dé est réussi
@@ -126,20 +123,41 @@ func end_bounce():
 		bounce_length *= bounce_physics_ctx["lost_length_ratio_on_bounce"] - bad_angle_launch_lost
 	else:
 		ObjectManager.apply_trigger("on_lucky_bounce", bounce_ctx)
-
-	if bounce_angle > -0.1 : bounce_angle = -0.1
 	
+	if _will_bounce_next() :
+		_trigger_special_bounces(bounce_physics_ctx)
+		if bounce_angle > -0.1 : bounce_angle = -0.1	
+		score_bounces += bounce_ctx["bounce_count_amount"]
+		bounce_index = bounce_index + 1
+		EventBus.bounce.emit(is_lucky_bounce)
+		start_bounce()
+	else :
+		score_bounces += bounce_ctx["bounce_count_amount"]
+		bounce_index = bounce_index + 1
+		EventBus.bounce.emit(is_lucky_bounce)
+		launch_over()
+
+func _will_bounce_next():
+	var p0x = position.x
+	var p2x = p0.x + bounce_length
+	var p1y = water_height + (p2.x - p0.x) * tan(bounce_angle)
+
+	return !(bounce_index > 0
+	&& (p1y > height_that_ends || -((p2x - p0x) * tan(bounce_angle)) / (p2x - p0x) > trajectory_that_ends))
+
+func _trigger_special_bounces(bounce_physics_ctx:Dictionary):
 	#eagle bounce
-	current_bounce_is_eagle = eagle_width_boost > 0.00001
+	current_bounce_is_eagle = bounce_physics_ctx["eagle_width_boost"] > 0.00001
 	if current_bounce_is_eagle :
-		bounce_length += eagle_width_boost
-
-	EventBus.bounce.emit(is_lucky_bounce)
-
-	score_bounces += bounce_ctx["bounce_count_amount"]
-	bounce_index = bounce_index + 1
-
-	start_bounce()
+		bounce_length += bounce_physics_ctx["eagle_width_boost"]
+	#holy bounce
+	current_bounce_is_holy = bounce_physics_ctx["holy_height_boost"] > 0.00001
+	if current_bounce_is_holy :
+		bounce_angle += tan(bounce_physics_ctx["holy_height_boost"]) * 0.01
+	#quantic dash
+	current_bounce_is_dash = bounce_physics_ctx["quantic_dash_boost"] > 0.00001
+	if current_bounce_is_dash :
+		position.x += tan(bounce_physics_ctx["quantic_dash_boost"])
 
 func launch_over():
 	visible = false
@@ -161,6 +179,8 @@ func _process(delta: float) -> void:
 	t += delta * velocity
 	
 	score_distance = position.x * 0.1 # divided by 10 to balance
+	if initial_position.x < 0 : score_distance -= initial_position.x * 0.1 # rectified with pebble init pos
+	#elif initial_position.x > 0 : score_distance -= initial_position.x * 0.1
 
 	if (t >= 1.0 || position.y > water_height):
 		position.y = water_height
