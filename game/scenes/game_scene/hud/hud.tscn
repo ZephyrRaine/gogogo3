@@ -1,189 +1,24 @@
-[gd_scene load_steps=21 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=9 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="2_3cd5f"]
+[ext_resource type="PackedScene" uid="uid://dyt64ecawf00s" path="res://scenes/game_scene/hud/launch_view.tscn" id="2_bodji"]
 [ext_resource type="PackedScene" uid="uid://dlem3qo2pk4fs" path="res://scenes/game_scene/hud/effects_hud.tscn" id="3_s1vs5"]
-[ext_resource type="Texture2D" uid="uid://dlxhloqf1hixd" path="res://assets/UI/Score_screen/mask_speed.png" id="3_vl2ax"]
-[ext_resource type="Texture2D" uid="uid://cmla107r52jf2" path="res://assets/UI/Score_screen/speed.png" id="4_5jsxa"]
 [ext_resource type="Script" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
-[ext_resource type="Texture2D" uid="uid://cvndbuwand1dc" path="res://assets/UI/Score_screen/mask_X.png" id="5_7d4ub"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
-[ext_resource type="Texture2D" uid="uid://ba2pbu4hs4oku" path="res://assets/UI/Score_screen/mask_splash.png" id="6_8338t"]
-[ext_resource type="Texture2D" uid="uid://xx2vbxuvuim4" path="res://assets/UI/Score_screen/splash.png" id="7_7knrv"]
-[ext_resource type="Texture2D" uid="uid://bek7w0xkifxay" path="res://assets/UI/Score_screen/mask_score.png" id="8_erl8u"]
-[ext_resource type="Texture2D" uid="uid://1tusguhnsux0" path="res://assets/UI/Score_screen/score.png" id="9_lmh6r"]
-[ext_resource type="Texture2D" uid="uid://dqw5saf0b0ntr" path="res://assets/UI/Score_screen/mask_egal_score.png" id="10_21gm5"]
-[ext_resource type="PackedScene" path="res://scenes/game_scene/hud/shop.tscn" id="13_7knrv"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vl2ax"]
-content_margin_left = 30.0
-content_margin_top = 10.0
-content_margin_right = 31.0
-content_margin_bottom = 10.0
-texture = ExtResource("3_vl2ax")
-texture_margin_left = 30.0
-texture_margin_top = 18.0
-texture_margin_right = 30.0
-texture_margin_bottom = 16.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_gfhlh"]
-font = ExtResource("2_3cd5f")
-font_size = 28
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_erl8u"]
-content_margin_left = 20.0
-content_margin_top = 40.0
-content_margin_right = 50.0
-content_margin_bottom = 4.0
-texture = ExtResource("6_8338t")
-texture_margin_left = 14.0
-texture_margin_top = 48.0
-texture_margin_right = 132.0
-texture_margin_bottom = 10.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5uvyi"]
-texture = ExtResource("8_erl8u")
-texture_margin_left = 72.0
-texture_margin_top = 44.0
-texture_margin_right = 97.0
-expand_margin_top = 10.0
-
-[sub_resource type="LabelSettings" id="LabelSettings_c3h80"]
-font = ExtResource("2_3cd5f")
-font_size = 52
+[ext_resource type="PackedScene" uid="uid://bciie026squw5" path="res://scenes/game_scene/hud/shop.tscn" id="13_7knrv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v20na"]
 font = ExtResource("2_3cd5f")
 font_size = 54
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("score_root", "score_total_root", "score_total_label", "score_dist_label", "score_bounce_label", "tournament_view", "effects_manager")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("launch_hud", "tournament_view", "effects_manager")]
 script = ExtResource("1_fjoyr")
-score_root = NodePath("ScoreLabel")
-score_total_root = NodePath("ScoreLabel/MarginContainer")
-score_total_label = NodePath("ScoreLabel/MarginContainer/cont_score/Container_Score/Label_SCORE")
-score_dist_label = NodePath("ScoreLabel/cont_speed/Container_Dist/Label_Dist")
-score_bounce_label = NodePath("ScoreLabel/cont_splash/MarginContainer2/Container_Bounce/Label_Bounce")
+launch_hud = NodePath("LAUNCH_VIEW")
 tournament_view = NodePath("TOURNAMENT_VIEW")
 effects_manager = NodePath("EffectsHud")
 
-[node name="ScoreLabel" type="HBoxContainer" parent="."]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -400.5
-offset_right = 400.5
-offset_bottom = 119.0
-grow_horizontal = 2
-
-[node name="cont_speed" type="HFlowContainer" parent="ScoreLabel"]
-layout_mode = 2
-reverse_fill = true
-
-[node name="Container_Dist" type="PanelContainer" parent="ScoreLabel/cont_speed"]
-custom_minimum_size = Vector2(121, 50)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_vl2ax")
-
-[node name="Label_Dist" type="Label" parent="ScoreLabel/cont_speed/Container_Dist"]
-layout_mode = 2
-text = "2"
-label_settings = SubResource("LabelSettings_gfhlh")
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="ScoreLabel/cont_speed"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_bottom = -7
-
-[node name="TextureRect_Dist" type="TextureRect" parent="ScoreLabel/cont_speed/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("4_5jsxa")
-stretch_mode = 2
-
-[node name="Cont_X" type="MarginContainer" parent="ScoreLabel"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/margin_bottom = -6
-
-[node name="TextureRect_X" type="TextureRect" parent="ScoreLabel/Cont_X"]
-layout_mode = 2
-texture = ExtResource("5_7d4ub")
-
-[node name="cont_splash" type="HFlowContainer" parent="ScoreLabel"]
-layout_mode = 2
-reverse_fill = true
-
-[node name="MarginContainer2" type="MarginContainer" parent="ScoreLabel/cont_splash"]
-layout_mode = 2
-theme_override_constants/margin_top = -10
-theme_override_constants/margin_bottom = 4
-
-[node name="Container_Bounce" type="PanelContainer" parent="ScoreLabel/cont_splash/MarginContainer2"]
-custom_minimum_size = Vector2(149, 69)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_erl8u")
-
-[node name="Label_Bounce" type="Label" parent="ScoreLabel/cont_splash/MarginContainer2/Container_Bounce"]
-layout_mode = 2
-text = "2"
-label_settings = SubResource("LabelSettings_gfhlh")
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="ScoreLabel/cont_splash"]
-layout_mode = 2
-theme_override_constants/margin_left = -20
-theme_override_constants/margin_bottom = -90
-
-[node name="TextureRect_Bounce" type="TextureRect" parent="ScoreLabel/cont_splash/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("7_7knrv")
-stretch_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ScoreLabel"]
-visible = false
-layout_mode = 2
-theme_override_constants/margin_left = -40
-theme_override_constants/margin_bottom = -14
-
-[node name="cont_score" type="HFlowContainer" parent="ScoreLabel/MarginContainer"]
-layout_mode = 2
-reverse_fill = true
-
-[node name="Container_Score" type="PanelContainer" parent="ScoreLabel/MarginContainer/cont_score"]
-custom_minimum_size = Vector2(242, 123)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_5uvyi")
-
-[node name="Label_SCORE" type="Label" parent="ScoreLabel/MarginContainer/cont_score/Container_Score"]
-layout_mode = 2
-text = "221356215156165"
-label_settings = SubResource("LabelSettings_c3h80")
-
-[node name="MarginContainer" type="MarginContainer" parent="ScoreLabel/MarginContainer/cont_score"]
-layout_mode = 2
-theme_override_constants/margin_left = 66
-theme_override_constants/margin_bottom = -230
-
-[node name="TextureRect_Score" type="TextureRect" parent="ScoreLabel/MarginContainer/cont_score/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("9_lmh6r")
-stretch_mode = 2
-
-[node name="cont_equals" type="MarginContainer" parent="ScoreLabel/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_bottom = 25
-
-[node name="TextureRect_Equals" type="TextureRect" parent="ScoreLabel/MarginContainer/cont_equals"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-texture = ExtResource("10_21gm5")
-stretch_mode = 2
+[node name="LAUNCH_VIEW" parent="." instance=ExtResource("2_bodji")]
 
 [node name="EffectsHud" parent="." instance=ExtResource("3_s1vs5")]
 

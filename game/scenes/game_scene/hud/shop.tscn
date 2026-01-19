@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c24rvmkqk7e80"]
+[gd_scene load_steps=5 format=3 uid="uid://bciie026squw5"]
 
 [ext_resource type="FontFile" uid="uid://bek77qahso3ha" path="res://assets/Font/Jersey10-Regular.ttf" id="1_3uddr"]
 [ext_resource type="Script" uid="uid://dan438uyjxutk" path="res://scripts/main/cards_manager.gd" id="2_weddl"]
@@ -17,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
