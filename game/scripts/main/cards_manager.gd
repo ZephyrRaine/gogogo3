@@ -7,7 +7,7 @@ signal selected_card(index)
 @export var card_prefab: PackedScene
 @export var money_label: Label
 var currently_selected: int = -1
-var displayed_item_ids: Array[String] = []
+var displayed_items: Array[Dictionary] = []
 var temp_money = 0:
 	set(v):
 		temp_money = v
@@ -30,7 +30,7 @@ func shop_requested(money: int):
 		n.queue_free()
 
 	currently_selected = -1
-	displayed_item_ids.clear()
+	displayed_items.clear()
 
 	# Get all possible IDs from our ObjectManager DB
 	var available_ids = ObjectManager.all_items_db.keys()
@@ -43,7 +43,7 @@ func shop_requested(money: int):
 		var card = card_prefab.instantiate() as ObjectCard
 		add_child(card)
 		card.init(selected_card, item_data)
-		displayed_item_ids.append(item_id)
+		displayed_items.append(item_data)
 
 
 func card_clicked(index: int):
@@ -57,11 +57,12 @@ func buy_clicked():
 	if currently_selected != -1:
 		var target_card = get_child(currently_selected) as ObjectCard
 		if temp_money >= target_card.card_data["price"]:
-			var chosen_id = displayed_item_ids[currently_selected]
+			var chosen_id = displayed_items[currently_selected]["id"]
 			ObjectManager.equip_item(chosen_id)
 			target_card.set_selectable(false)
 			currently_selected = -1
 			EventBus.spend_money.emit(temp_money, temp_money - target_card.card_data["price"])
+			EventBus.buy_object.emit(target_card.card_data)
 
 
 func close_clicked():

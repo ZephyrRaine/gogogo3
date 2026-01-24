@@ -15,3 +15,5 @@ signal show_tournament(tournament_dict:Dictionary)
 signal hide_tournament()
 
 signal spend_money(previous_money:int, new_money:int)
+signal buy_object(item_data:Dictionary)
+signal activate_object_feedback(object_id:String)

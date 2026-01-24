@@ -58,6 +58,7 @@ func apply_trigger(trigger_name: String, target: Variant) -> void:
 				if randf() > effect["chance"]:
 					continue
 
+			EventBus.activate_object_feedback.emit(item["id"])
 			# Handle Permanent vs Temporary logic
 			if effect.get("is_permanent", false):
 				_modify_stat(permanent_stats, effect["stat"], effect["op"], effect["value"])

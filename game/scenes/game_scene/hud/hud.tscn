@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh1ln5wlm85dr"]
+[gd_scene load_steps=10 format=3 uid="uid://dh1ln5wlm85dr"]
 
 [ext_resource type="Script" uid="uid://cgiij08ds754p" path="res://scripts/main/hud.gd" id="1_fjoyr"]
 [ext_resource type="PackedScene" uid="uid://dyt64ecawf00s" path="res://scenes/game_scene/hud/launch_view.tscn" id="2_bodji"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://cfd8050tpsw4v" path="res://scenes/game_scene/hud/tournament_view.gd" id="4_q2dkn"]
 [ext_resource type="PackedScene" uid="uid://bkrc5qt5oqodg" path="res://scenes/game_scene/hud/tournament_row.tscn" id="5_dl1nx"]
 [ext_resource type="LabelSettings" uid="uid://cvxoobwi2pn2x" path="res://resources/label_settings_basic.tres" id="7_bodji"]
+[ext_resource type="Script" uid="uid://exnkvhgj2e5e" path="res://scenes/game_scene/hud/objects_container.gd" id="8_s1vs5"]
+[ext_resource type="PackedScene" uid="uid://dti0peflq0mpl" path="res://scenes/game_scene/hud/object_prefab.tscn" id="9_nv3gn"]
 [ext_resource type="PackedScene" uid="uid://bciie026squw5" path="res://scenes/game_scene/hud/shop.tscn" id="13_7knrv"]
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("launch_hud", "tournament_view", "effects_manager")]
@@ -17,13 +19,6 @@ effects_manager = NodePath("EffectsHud")
 [node name="LAUNCH_VIEW" parent="." instance=ExtResource("2_bodji")]
 
 [node name="EffectsHud" parent="." instance=ExtResource("3_s1vs5")]
-
-[node name="ObjectsContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 80)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 80.0
-grow_horizontal = 2
 
 [node name="SHOP" parent="." instance=ExtResource("13_7knrv")]
 visible = false
@@ -67,3 +62,35 @@ horizontal_alignment = 1
 [node name="RowsContainer" type="VBoxContainer" parent="TOURNAMENT_VIEW/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="ObjectsContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(80, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 8
+script = ExtResource("8_s1vs5")
+object_prefab = ExtResource("9_nv3gn")
+
+[node name="Spot" type="Panel" parent="ObjectsContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Spot2" type="Panel" parent="ObjectsContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Spot3" type="Panel" parent="ObjectsContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Spot4" type="Panel" parent="ObjectsContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Spot5" type="Panel" parent="ObjectsContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2

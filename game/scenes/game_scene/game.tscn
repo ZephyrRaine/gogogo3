@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://nbshwsd86jm8" path="res://scenes/game_scene/PebbleAnim'.tscn" id="9_oxnsv"]
 [ext_resource type="Texture2D" uid="uid://bajycedvqv05r" path="res://assets/PNG/pebble_shadow.png" id="12_1qftq"]
 [ext_resource type="PackedScene" uid="uid://dd4oky11i74lb" path="res://scenes/game_scene/speed_trail.tscn" id="12_4ybgr"]
-[ext_resource type="PackedScene" uid="uid://dx4tub02ajasy" path="res://scenes/game_scene/water_drop_particle.tscn" id="14_5prq0"]
+[ext_resource type="PackedScene" path="res://scenes/game_scene/water_drop_particle.tscn" id="14_5prq0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7ulqd"]
 size = Vector2(1000, 4)
