@@ -33,7 +33,7 @@ func shop_requested(money: int):
 	displayed_items.clear()
 
 	# Get all possible IDs from our ObjectManager DB
-	var available_ids = ObjectManager.all_items_db.keys()
+	var available_ids = ObjectManager.available_items_db.keys()
 	available_ids.shuffle()
 
 	for i in range(min(3, available_ids.size())):

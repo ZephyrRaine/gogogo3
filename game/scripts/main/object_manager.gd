@@ -2,6 +2,9 @@ extends Node
 
 # Stores loaded item definitions
 var all_items_db: Dictionary = {}
+
+var available_items_db: Dictionary = {}
+
 # Stores currently equipped/active items (Array of item dictionaries)
 var active_items: Array = []
 # Stores permanent buffs (like Sniper Training speed)
@@ -22,14 +25,20 @@ func load_database(path: String):
 			var data = json.data
 			for item in data:
 				all_items_db[item["id"]] = item
+				available_items_db[item["id"]] = item
 		else:
 			print("JSON Error: ", json.get_error_message())
 
 # Call this to equip an item by ID
 func equip_item(item_id: String):
-	if item_id in all_items_db:
+	if item_id in all_items_db and item_id in available_items_db:
 		# Duplicate so we can modify 'uses_remaining' independently
 		active_items.append(all_items_db[item_id].duplicate(true))
+		available_items_db.erase(item_id);
+
+func sell_item(item_id: String):
+	if item_id in all_items_db and item_id in available_items_db:
+		available_items_db[item_id] = (all_items_db[item_id].duplicate(true))
 
 # --- THE PARSER ---
 
